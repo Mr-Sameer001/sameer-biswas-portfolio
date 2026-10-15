@@ -5,7 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sameer Biswas | WordPress & PHP Full Stack Developer</title>
-  <meta name="description" content="Portfolio of Sameer Biswas - WordPress, PHP, Laravel Full Stack Web Developer based in Uttarakhand, India.">
+  <meta name="description"
+    content="Portfolio of Sameer Biswas - WordPress, PHP, Laravel Full Stack Web Developer based in Uttarakhand, India.">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,6 +17,347 @@
 
   <!-- Main CSS -->
   <link href="css/style.css" rel="stylesheet">
+  <style>
+    /* ---------- Base ---------- */
+    .skills-section {
+      --skills-bg: var(--color-background);
+      --skills-track: rgba(128, 128, 128, 0.28);
+      margin-inline: auto;
+      padding: clamp(32px, 6vw, 64px) 0;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--color-text);
+      box-sizing: border-box;
+    }
+
+    .skills-section *,
+    .skills-section *::before,
+    .skills-section *::after {
+      box-sizing: inherit;
+    }
+
+    .skills-section ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .skills-section .skills-rings {
+      margin-bottom: clamp(40px, 6vw, 56px);
+    }
+
+    /* ---------- Heading ---------- */
+    .skills-heading {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: clamp(28px, 5vw, 44px);
+    }
+
+    .skills-title {
+      margin: 0;
+      font-size: clamp(30px, 5vw, 44px);
+      font-weight: 600;
+      line-height: 1.1;
+    }
+
+    .skills-line {
+      flex: 1;
+      height: 2px;
+      background: rgba(var(--color-text-rgb), 0.12);
+    }
+
+    .skills-subtitle {
+      margin: 0 0 22px;
+      font-size: clamp(16px, 2.4vw, 20px);
+      font-weight: 500;
+      color: rgba(var(--color-text-rgb), 0.65);
+    }
+
+    /* ---------- Rings ---------- */
+    @property --p {
+      syntax: '<number>';
+      inherits: false;
+      initial-value: 0;
+    }
+
+    .skills-rings {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 36px 20px;
+      margin-bottom: clamp(40px, 6vw, 56px);
+    }
+
+    .skills-ring-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      text-align: center;
+    }
+
+    .skills-ring {
+      --p: var(--target);
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: clamp(104px, 15vw, 140px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      font-size: clamp(22px, 3.2vw, 28px);
+      font-weight: 600;
+      background: conic-gradient(var(--c) calc(var(--p) * 1%), var(--skills-track) 0);
+      animation: skills-fill 1.4s ease-out 0.2s both;
+      transition: box-shadow 0.25s ease;
+    }
+
+    .skills-ring::before {
+      content: "";
+      position: absolute;
+      inset: 7%;
+      border-radius: 50%;
+      background: var(--skills-bg);
+    }
+
+    .skills-ring span {
+      position: relative;
+    }
+
+    .skills-ring-box:hover .skills-ring {
+      box-shadow: 0 0 28px -6px var(--c);
+    }
+
+    .skills-ring-label {
+      margin: 0;
+      font-size: clamp(14px, 2vw, 17px);
+      font-weight: 500;
+      color: var(--color-text);
+    }
+
+    @keyframes skills-fill {
+      from {
+        --p: 0;
+      }
+
+      to {
+        --p: var(--target);
+      }
+    }
+
+    /* ---------- Pills ---------- */
+    .skills-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .skills-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 20px 8px 8px;
+      border: 2px solid var(--c);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--c) 12%, var(--skills-bg));
+      font-size: clamp(14px, 2vw, 16px);
+      font-weight: 500;
+      transition: transform 0.2s ease;
+    }
+
+    .skills-pill:hover {
+      transform: translateY(-3px);
+    }
+
+    .skills-pill-icon {
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--c);
+      color: var(--skills-bg);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 760px) {
+      .skills-rings {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .skills-rings {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .skills-pills {
+        gap: 10px;
+      }
+
+      .skills-pill {
+        padding-right: 16px;
+      }
+    }
+
+    /* ---------- Accessibility ---------- */
+    @media (prefers-reduced-motion: reduce) {
+      .skills-ring {
+        animation: none;
+        transition: none;
+      }
+
+      .skills-pill {
+        transition: none;
+      }
+
+    }
+
+    /* //gif css */
+    .jessica-main-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    /* ---------- Section ---------- */
+    .Marquee-main {
+      --m-bg: var(--color-background);
+      --m-gap: 16px;
+      --m-speed: 35s;
+      width: 100%;
+      padding: clamp(32px, 6vw, 64px) 0;
+      overflow: hidden;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--color-text);
+    }
+
+    .Marquee-main *,
+    .Marquee-main *::before,
+    .Marquee-main *::after {
+      box-sizing: border-box;
+    }
+
+    .marquee-title {
+      margin: 0 0 clamp(24px, 4vw, 36px);
+      padding-inline: 16px;
+      font-size: clamp(22px, 3.6vw, 34px);
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    /* ---------- Track ---------- */
+    .Marquee-main .logos {
+      display: flex;
+      overflow: hidden;
+      /* soft fade on both edges */
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    }
+
+    .Marquee-main .logos-slide {
+      display: flex;
+      flex-shrink: 0;
+      min-width: 100%;
+      animation: marquee-scroll var(--m-speed) linear infinite;
+    }
+
+    .Marquee-main .marquee__content {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      gap: var(--m-gap);
+      margin: 0;
+      list-style: none;
+    }
+
+    .Marquee-main .logos:hover .logos-slide {
+      animation-play-state: paused;
+    }
+
+    @keyframes marquee-scroll {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-100%);
+      }
+    }
+
+    /* ---------- Chip ---------- */
+    .Marquee-main .marquee-img-main {
+      flex-shrink: 0;
+    }
+
+    .Marquee-main .tech-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 22px 8px 8px;
+      border: 2px solid var(--c);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--c) 12%, var(--m-bg));
+      font-size: clamp(14px, 2vw, 17px);
+      font-weight: 500;
+      white-space: nowrap;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .Marquee-main .tech-chip:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 22px -8px var(--c);
+    }
+
+    .Marquee-main .tech-icon {
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      min-width: 38px;
+      height: 38px;
+      padding-inline: 6px;
+      border-radius: 999px;
+      background: var(--c);
+      color: var(--m-bg);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 600px) {
+      .Marquee-main {
+        --m-gap: 12px;
+        --m-speed: 28s;
+      }
+
+      .Marquee-main .tech-chip {
+        padding-right: 16px;
+        gap: 10px;
+      }
+    }
+
+    /* ---------- Accessibility ---------- */
+    @media (prefers-reduced-motion: reduce) {
+      .Marquee-main .logos {
+        overflow-x: auto;
+      }
+
+      .Marquee-main .logos-slide {
+        animation: none;
+      }
+
+      .Marquee-main .logos-slide[aria-hidden="true"] {
+        display: none;
+      }
+
+      .Marquee-main .tech-chip {
+        transition: none;
+      }
+    }
+  </style>
+
 </head>
 
 <body><noscript>You need to enable JavaScript to run this app.</noscript>
@@ -25,20 +367,18 @@
         <div class="fix-bg">
           <div class="Ellipse1"></div>
           <div class="Ellipse2"></div>
-          <div class="container"><button id="menu-toggle" class="menu-toggle-button"><span class="hamburger"
+          <div class="container"><button id="menu-toggle" class="menu-toggle-button" type="button"
+              aria-label="Open navigation menu" aria-expanded="false" aria-controls="side-menu"><span class="hamburger"
                 id="hamburger-1"><span class="line"></span><span class="line"></span><span
                   class="line"></span></span></button>
-            <div class="side-menu" style="">
+            <div class="side-menu" id="side-menu" style="">
               <div class="profile-img-main"><img class="zoom_in" src="assets/img/Sameer-biswas-main.png"
                   alt="profile-img">
                 <h1 class="fade_up">Sameer Biswas<span></span></h1>
                 <h2 class="designer fade_up">WordPress &amp; PHP Dev</h2>
                 <div class="profile-media-icons-main fade_up"><a class="profile-media-icons"
-                    href="mailto:biswassameer291@gmail.com"><img src="assets/img/email-svg.svg" alt="email-svg"></a><a
-                    class="profile-media-icons" href="https://github.com" target="_blank"><img src="assets/img/behance-svg.svg"
-                      alt="github-svg"></a><a class="profile-media-icons" href="https://linkedin.com" target="_blank"><img
-                      src="assets/img/drribale-svg.svg" alt="drribale-svg"></a><a class="profile-media-icons"
-                    href="tel:+917455973807"><img src="assets/img/medium-svg.svg" alt="medium-svg"></a></div>
+                  href="mailto:biswassameer291@gmail.com" aria-label="Email Sameer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg></a><a class="profile-media-icons"
+                  href="https://www.linkedin.com/in/sameer-biswas-b7056b318?utm_source=share_via&utm_content=profile&utm_medium=member_android/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2ZM8.34 18H5.67V9.41h2.67ZM7 8.24a1.55 1.55 0 1 1 0-3.1 1.55 1.55 0 0 1 0 3.1ZM18.33 18h-2.66v-4.18c0-1-.02-2.29-1.4-2.29s-1.62 1.09-1.62 2.22V18H10V9.41h2.55v1.17h.04a2.8 2.8 0 0 1 2.51-1.38c2.69 0 3.19 1.77 3.19 4.07Z"></path></svg></a><a class="profile-media-icons" href="tel:+917455973807" aria-label="Call Sameer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.63a2 2 0 0 1-.45 2.11L8 9.73a16 16 0 0 0 6 6l1.27-1.28a2 2 0 0 1 2.11-.45c.85.29 1.73.5 2.63.62A2 2 0 0 1 22 16.92Z"></path></svg></a></div>
               </div>
               <div class="menu-list-main">
                 <ul>
@@ -56,8 +396,7 @@
                         src="assets/img/pricing-svg.svg" alt="home-svg">Pricing</a></li> -->
                   <!-- <li class="active-menu-action "><a class="fade_right" href="#blog"><img src="assets/img/blog-svg.svg"
                         alt="home-svg">Blog</a></li> -->
-                  <li class="active-menu-action " id="contact-line"><a class="fade_right" href="#contact"><img
-                        src="assets/img/contact-svg.svg" alt="home-svg">Contact</a></li>
+                  <li class="active-menu-action " id="contact-line"><a class="fade_right" href="#contact"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg>Contact</a></li>
                 </ul>
               </div>
               <div>
@@ -77,18 +416,18 @@
                   <div class="col-xxl-6 col-lg-6">
                     <h2 class="jessica-main-text zoom_in show">Sameer Biswas<span></span></h2>
                     <h3 class="back-End-dev designer2">WordPress &amp; PHP Full Stack Developer</h3>
-                    <p class="best fade_down show">PHP &amp; WordPress developer with 3+ years of experience building fast, responsive websites, custom themes, and database-driven web applications in Laravel.</p>
+                    <p class="best fade_down show">PHP &amp; WordPress developer with 3+ years of experience building
+                      fast, responsive websites, custom themes, and database-driven web applications in Laravel.</p>
                     <div class="section-one-btns-main fade_down show">
-                      <div class="wrapper"><a class="btn-hover" href="#portfolio">View Work</a></div>
+                      <div class="wrapper"><a class="btn-hover" href="#portfolio">Hire Me</a></div>
                       <div class="wrapper"><a class="btn-hover btn-hover2" href="#contact">Contact Me</a></div>
                     </div>
                   </div>
                   <div class="col-xxl-6 col-lg-6 position-relative"><img class="flower"
                       src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAlCAYAAADFniADAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAT1SURBVHgBzVhNUuNGFH7dkv9mKhVnkwxhEXGCMSeIVckBzAmClxkyxfgEiBPYFDXOEjgB3idV4gb2DdAsKDKszAZ7bNSd91qyackty6BZzKtyWS23Xn/d73vfezKDgnbtd+s1qFziZROADyYwae+4nTEUMA4FrSbKXgSITLSqovwBClphUJKxesIh579AQSsMCqQM9KEQ4hMUNNt089bvOkyUWqHkwfbv7waw3oKc8ar/f06bjLOG5PPBlttZmc9NgDiUhxiHrmXB5Wf/76N1C+DRBEmPqXHKyB+zLZ/8c6gMab1cUHRCEp54IkF6t/5pM3MV2w70YQg8M/Pu/G6D/D35hjoTlVYuKMnlaHWSdWnaEdkUpgkQc5gFpnn0vIikI2GMh8Hqeinbct9f4W6O9XtqR1DxSZPS80mTGMixPk7Poefoebx0kn7l8U/u+0EuqAjYgcdB7kKStM4rKHdN8zHcCggDGJl+fw2VIx0QbUJC6NI6pvmZkvCjezDCxVwdGI73zcTnIx2cbjRfAOiCGgjguxQRyLC1OrXl/hlM4MsuCHnyBEx6N34/QU4pxT19Cwn3+n1K/SSxxcUEarvkd926ueJJHHnz28EHnWcobmcJ4scCyqRYhk9pnW2daZs53nL/2t9x27l1cWNFp/gTD/AyMBA/UKDi8OnEJv6EAHtZ/CkEKgJGmbnkmVODqkpxIUVE9Di9X0GVEsKBmD/bbm5VSBiDFxidRFVWeozBH3g6HhL5Ak/kmk6Sg/0r8QgdDx6g1t4kXGmzaQHc2SGpuBQhETWg0oF1bzwvzQKT7sT39m/9jwF+exaXYyEQnrCwnkmP+PNmTbjUpqbVuijJBmeSKOBQd0HZK2Fywj77/UvkSCvLQaQpLMArFEkMB3YBiidYrLkMx5bN3wqUCpzaoA1JIS/CEAZYcJ3kguq6gc/W9TJmWPGK/ef3JXxjZhMyTNhm1oT4pMaRWrOx6pc4EViMS8CDecgc25Jn8e4D/Jwgt0bIs7oFzJGC1aOTIuJHpwVrjV3ZE5juVUTViwBgFnFyTO2HHUyhOl5H1Dv/4yG2Nz1M+RNM40MM2TmGD1sS20OBPM567to/q7+GBycEgSC5AyIKMW700xRqvRdnH9UzKh+UZXMktg1s+Ij10kJ+IuWP8HP+ANPOS14int0Ok1Lj24sf1zMMI+tYj0IRtwTCIZEkoEjs/VpGE/dVQak2NlLqRsw1V9UxjiEAakK5AvcAX9oQCyzNT9fKrwaK+KPa2LgFwZPqaIXV0b8pZAQ47rMcDGl+W/1cUHd+v4th6i3GUXE9OF9OYMxRzrTXKwKMxN3TnvHIj6lRfBYo4gPq2FDvh4gv6eLKGFNgQgk/6PfTXSz52YRnmaCoyV/wR7sdUD1bna30B1DB36Z/Ud2FFBfaLcWzdS8jRlA3//Zb2OQPYaWFZa5Jt/A3J/oGY2imbK4yNQnM8rN4ZgSFgrjSiz8Ca5s6RuLIopZRn5X1cqERf2lZr28bEZ14kdUTlaDs6ON6+bvvTfPSxF+a4E3YBBTWroXOLDLNgwxbCOfCZrPJbtZcIj5JyWKsTo7z8/Q8O+th/NqhGpXbpMXCubCFgGbZz+673o1/GlCxFmANTJSw1znYsGt0csYrtm14AdWt8F9B6Yz7Jv6fwoxLnGYoxD0UtMKgpnzWo/864+EV47wHBe1/ix5nw624XzMAAAAASUVORK5CYII="
-                      alt="flower"><img class="circular-img"
-                      src="data:image/png;base64,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"
-                      alt="circular-img"><img class="jessica-main-img zoom_in show" src="assets/img/Sameer-main-img.png"
-                      alt="Sameer-main-img">
+                      alt="flower"><img style="Width:125px" class="circular-img"
+                      src="assets/img/badge-available-for-work.png" alt="circular-img">                      <img class="jessica-main-img zoom_in show" src="assets/img/Tech Professional with Laptop and Code Icons.png"
+                        alt="Sameer Biswas">
                     <div class="worked-box">
                       <p class="worked-more">20+ Projects Delivered</p>
                       <div class="client-img-main position-relative"><img class="client-img client-img1"
@@ -106,70 +445,92 @@
                   </div>
                 </div>
               </section>
-              <section class="Marquee-main overflow-hidden">
-                <h3 class="fade_up show">Trusted by World Leading Brands</h3>
-                <div class="logos logos2">
+              <section class="Marquee-main" aria-label="Technologies I work with">
+                <h3 class="marquee-title">Technologies I build with.</h3>
+
+                <div class="logos">
                   <div class="logos-slide">
-                    <div class="marquee__content">
-                      <div class="marquee-img-main"><img class="brand-logos"
-                          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHQAAAAlCAYAAACTSM11AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAVtSURBVHgB7VqBdds4DEWywHmD401w6QSnm6C+CaIN4k5gdYI4E9iZwO4E8k3gdAKrE9gboIIFxhBMSqRqO0qj/56eLRIEQYIAAVIAHYCIo/KZls8Wj8jLJ4UB7wul0u6UIjWWpHAY0H+UijJKmaS8CT+5KJ/DgP6DFCWUljjqM1E/hgH9BSlQKCtroFsyzRYG9BfCpW5b6IxQfAoD+gdlnWkA/cwqvy8BEgdzBiLB7RJ+7uBKEH0mXeRuY57HuFGs0ppdm3u+BhyB3DSyfS7a5nAlYB1ZaLvbAMZp+ZPw61cIwM3Nzb78eeLXhze2UgrOjHjP8DdOq1oVWsKu6KJU1ALCMSsfUixN3gTeDgY+EBoVytZp+DXIOi16ZKV2YVk8sWwfD2Lv6ZSC9GUv5X00ww5R93vbQ5sYphgR2TbwsYcNu/e4d/1OQdE9/zr3TqzCaTrym5fPIy8A4+Bz1r2Ure1ReI8dTzr1P2Z5DjKJNnPxjLnsTpUT36ngm3v6v+P+rOfZcPvEQzsXc6QvNV5lh/Zxjz39Ggho7M07eeA5+jF18FuIAXS20rLtAzZjJ/5vRTuJzDFG3fa1vRrrzkEn8dgwjweeEW1D25E8zYaCnrwTT3M6u0qW2JDrYf30qJOVYrWyYxCrUGd7bF68LszBr9A2ZB6ZQzDxTVyTdc59dVyfifpE1VkrjQ6wsL4gLHKs3Kx1/VtV30WhJP+Y6xJwK3Qn6MZiXKjnpqGPRMhd4+2RmbBhempH41465Bq5Js95uI6V/7fwWpmYgFWDUlKIU+hcCZ85aEY8aNTyu9ri6WQn0DyeA0907FlY7ZXSFeeePlJH25miMQ6Zlx7ZMj22W0VAzOy1l8475TnmCvz4xr9/y8IysCrKnzW/3kMc5FXcuuSVaQLOLb9DdxQhNDwO3fcLHHNuQoLuYKVwlL2od1eM4RwXz8NaFH3WUW7TqZARjArwY6/pBewiSXwWoYGVG5GD/Ab9hFaMgTAU6j02aJTKNq8K5RWV8qvrVGgvaJs6tXWFrigXwhqOKyr0kHzkk6NneCu5ZL8jaaGv1gl1M7aQZU3XSP8IPi7EWqmeqKtdYUXCqPdrKVhubfuDQpV1rjz7BAm45tcHB2O9Bz+7aGKtVPVLuEd/Mv0HXBZOz8QeS46l4H310v0aqMcXK2uhMkh5Aj/+59+xZ1I/i/9r8CPWSuXioMHlKL5ZQj6BgfrgLgF78mNE3wnJA3ULXcN5QQcqE7vV8XjT8u9G0T1bobYc9jZ+rYf1w/a5qjOhfJje8plBALCekljsuE/X6U1s2mI8/eboxtbXLx5Tj9bUyEeDfmw95Yc5v8WIKzJ1JZYqAacQd9Vm+dxj2HHgf+COCA3ER4bngHH0W5TPvy1ZwDn61SD3/oX+kMu17nYdKAhZlKWb49H8Uy77GsHHHtq3ukrm+Qk8ezNUbu4ZLos1+LekBVxOmWQghaOc5o/m+5O9473B6riJJvVLWRjq/hKo9g3CCqrI00AVDPwFgSj5bLgtXTpPItqNRJ+Ely5BCAo3G6MIbkf9kxyHoO1XLs2x7u73Pl4875a2gGrce01kkUKcEDOHHzeRPBbS/w/4dZDL7bSy2KKkVSw6uJs/+fcHDDgLSKFWKVEJO1ZpgmxDqUxs0m/pz5mzfWzg8QpnF+oysbp9t5ipUDro4B2P95tbfIefpvQWHKVahWyalIqnXytkolwqddrS573mMeCMwHpyS4pJpdXg8XubnU8RTLNx8DGC5k5Z9wYGXAZY3b6ffFfjKUsa+GR4Cte3ODkOrvayYCtboBs5K6tVCYKP62iMrDiFARfBja+CrdAmzkXXExCsIl/Dry8XPhb78PgJ6pbs6dWEW5gAAAAASUVORK5CYII="
-                          alt="brand-logo1"></div>
-                      <div class="marquee-img-main"><img class="brand-logos"
-                          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHIAAAAfCAYAAAA7t5n5AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAkqSURBVHgB7Vs9c9zGGX4XWHzc8Y6jJK04ObdJCrqkG1NFJumszHjUivYfsCT/AFPpLVm1J2O5jCcZW52SFJIbM11YWJlJRY4tdbFF3/cdgFs/z2IhgzDPFnk4jjW+R7MD7C6wOOLB+71SsiCe9iZPlDE95ftfeEoeia/3/Ez2mk31paxwblCyIL588v8nyleiAF/5ogNtfN9XWvt/Re/WitDzwcJE/vd/B0+4jud7AgKN9rUKdGCCMBA0nOsVoecALQui3+/ha/CM8iCRkEQQZ3QAEqdahWFkoii6EgbhK72eebPdVo9khaVgYSK7vZ54UKye5xmtA5hIX4IgUGEUmjTJJEszlcXpRrMh/xwOzXVI5keyQu1YmMhet2dJpGqFWhWSGYaBSZJE0jCVbJaZ2WwGf0ik0TTvQTIfrSSzftShWg3kURX2kWo1jAITpRGlUWZmJmYGGpUREq5i+Tsk8/crm1kvFpfIXp88Gt+DfQy00C4maZiTmBkxFEWhN0TP1qP0tr2GfxtDr5/mOaZYaD72XbsJB/pQTony+vTA580BlzD9UH5iWJzIfheSBr/Up40MQWSi4OCYWWYlEVcYSyIIFJCN0IRSq7eGidlqBmpP6sOmazt477t42TflZ4TFVWtvYPgBa01phF1ME5KoYBfNMxLz0MQ6Qn7gm2QS0p6+LaeUylNgF2R+WofkYJ0L8gKgBq+1K0gEKMaNdHCsSoVNNLSJjrwittT0ZnUi03BqgjR4BbZy44y28g7ae6U+X/ZltHdKYzx/KM+PN6oD+Cs6OLxVGe64cTmLCl8WPFkQ/W5feoOeGfQHZjgcmeFoKOPxWE3HU5lOJjIZT9RkOpHpdGqJTrLEpGlKwk1qsj/K2XDEl1hq+2i7cpy4zeIEL/7AtQckwR1NxfZ1Sq3AAdq1yrM/cOMHlXE+Z9ut/dQt/9T1d+QEuLmibaK95X5nce8HxUfjfvfHpbUPyvM1eK19qlWFUINhBlNFTNFZVZurW8STmSUOjceZZFnGsARXzrawxPtSHz5F23bnZZXYKZ0/qPQLlKV5V04Bp35J8OXK1AX3e0jwqzhexwd3VJrfLp3frvR57w7XxL1vuPWrf9OOW/vlxVUrnJ0wiEwDxNAeWlWaE6ggeYX0kTxFlUuyQaxifAnd9BupF6+Vzo9OmO/IckASLv/INTvu+ZfmzG/PGSd5H8t8dNCuLa5a+wMZUZ1OxjJNpnB2LEk2EYB/QuLYbH+WIiTJlJjcowetG3I2/NqpsaLxq+Ufu1m65pM59x5K/jJ/UQ0zqlAOleFL5XGnNndK8/tu/Zfc8bA0Z3+vzMcddx8l8GjO734ZreqRX9VPu+O3B4MBMzSICXvCczowsHsy6GIc/QH6XfR5zaDHsa499jEHO2jzqww3SBhEDlHHTCETkCcC8ggkhztiHPP59BmxI8dfXhVHJ/yxBW7WHAdeLZ0fov2p5AQdUu1Jbk8LtTjPCbuH+wp7fNep69ul+Tul373vVPW263e056kbNGw2YPfsd8ZwQnlMhOddwyIJw3nGgSxZ+Z6GCtWMF7mIoSq1KhXxJCJ+hv1wWW1pK6+vsBkXaLs+vFo8Y+Hiy0kgiZd+wKP8ROpFWQvcqz6XNhEv/UP5zvvdnLPO/in7ZX/AOjuP8bCLolxCgyS6AB7xn3VcvNzuMQUHexjmOdRsZhBSULUgo4OUXBDZPCuvK0i1sSOPJBdr2RSdyonm+mD9rDnXI/m+6tl3f9zdikNxDD80d0ZcqPyuk3A05/raoJEk/Rwv+yJzpe7FY0jb2A+E2LEQ+dOEBEap9TipOj3t0ZGxIsVrmc2J4gh51lCBbFvKcpKKa20elh+H0ngO7rWxp5HZYzkb7rhw46cAklSQM4+k5yF7IXiwa//OpcbWEkWH2rjQwVD66H3iCKJCieNY4masWs01WVtbk/Za27RbbdNqtaSJsUazoRpRw/DaKIwovZDW0AR+gI9C57sHQCyJZ7YHqfY6U3TnhSpZZZV3tZoJcnHea3Ourw0eXvV9kMcaoqHdg7qkqpQgshV+gZSZqBGZOAZJzVjWmmtmDcStt9alvd6WVrst7TbIBLFrJLMR454Y9+MjiEEi10ZZC6UtCZGL5XMonfao/PvyYuCwdP5qZa7sVJHEBy647zgPld50p3TNh7IEaKbIuoNkD9KzZVUoAng6MQnDCGRfZgjgEUfQWbHODxwdbuOwahWeqqFtpT30rATDVkYgEiQ24obEOGez6jYM7fYPSCWIDSmZL9IGrXvynbNyzYUczC69RE8SfTpQRRxJZ+Y/c9ah/b4rS0CeEFByC1L5N7xgCRHAI5WmGllmDEMKhhJ0Mhns+3ZzlYqSPFuDSENZB9QWlX0JKHFhoCjFJJBk4qNQOBqrarE+nCLkZbkdRL8rLw52JVePHde/IMdVLOO+b+R4KFIFJfG6LAmWyPVm8FlvkH6WRdmWzcBA0vKqPgvCIAopWToohd20JGYM+Gd2EXq7RT0yQJYHhWWJQ6rYSDUbTUPbynOQiznazuCjmktYS4ULIRiM70pOKEk8Ks9LXj57KDmZm6VrihrpQ1kingVyrERM08m/RuPR+mg0MqPRWEbDkUJfkPQ2EyTAkwkqF2mevUGihqmZQuOKy6/afTskkuo5CmMFm5nb10YEB6ll4kb8OPPC13+12iFQK45F5F/3Jr+DGP4DFQw1GY/NeDyRMQgtqhdsaZKqdIa6hUu12WyN3UHnmXzPTp5npT2kBFpPN46pboXSCdr/8Mt29LmsUCu+l1rpTdIrkLw/TyfTtiWRpSgQyRIUc6lZkkG1MocKqXRloHwXna092tCFXi/tIZ0cqlgQCUKjbqijd1a76JaDE3NklEwI2V+QR71oVSqlkbVEOEG2mmFtaEY/x+SLPMvc2JIWQwt6wHSerIqNosdeELzZjla755aFuclO2kz4rDeSNLlii8JTbuNIIY2Jyomc2fwpmbSZPWZtXAbHhhja7TT39futpn4XdrQrKywNP5q1/mo43EBQcQOe7JXE1RZTlqPg1Tobyf/0wRyqzam6lB6k099DYvwWPWJZYel47vIDJRRVRlT0zRbix9/CPG5AEtetVBrhLuUvEE4+MqL3Wg25v5LA88W3Lt2yoXA6rAsAAAAASUVORK5CYII="
-                          alt="brand-logo2"></div>
-                      <div class="marquee-img-main"><img class="brand-logos"
-                          src="data:image/png;base64,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"
-                          alt="brand-logo3"></div>
-                      <div class="marquee-img-main"><img class="brand-logos"
-                          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGIAAAAZCAYAAADKQPsMAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAANsSURBVHgB7VmNlZpAEB7zUgCpIKSCmAokFYSrIKSCaAWHFZxXAaSCswO9Ck4rkFRwdEBmZIjrMMsBKgc+v/fmre7OsMPOz84ukOlwQYD6FL4d3HAWfIAbeoGbIXqCmyF6gt4bAvchDylCetD2rmvBx7qMo9EowYX4Ah0C5wuwiYwuH/u+oS4p9BSKs6S19K1bNbVRSJDTlBfblaJbAD1GW31tqWnCqSAy0oIHzUCevDPooQXvVuHdexenrLM70HvBlppipW+KL5pg+wtDbQ3dIESi6PgJuQHmOPcSrhBNN2sXaYUGuYcOQLkVKRjl+IS0gCtF7c1aIERjbC/tnTjHGBvf7MM5ae4Qf35WRChqKXJSaTROrRMkeiZFGfFR6oupEAG7Dg7rMGE5og3JolwM9d/Fw+YHyxOej+Sz9njNqjfgleCPmvLSRicnranzzlxIpKc3+KNMv9bx+T2t8xCPkJG4z/Sio5Dfz1uVmtZIM6ZEGScjBNBjZLmjrEBElYIA8pTrGLK/sXmCgwdrcIlHGkNgiuRVyO/ntaWmJYbNnaFUDPkLjQWfh1Q3b5NnerYxuAxoL5M6U0qi1OIyFXCZf8ZeGkJ9RCiztpwXHGNe878579QW5lL5IkxLoQUWVIRjHVSmJh6rLF8z/bY4FDqGCg85TFQla5Gb8piGQKyjTHcvtojQLLuBYUE6U0IbvdnBGz+lINNLfUU2NmVZLhVyCeiIzU2ZCpwsd3Sz8nTbVk1DgFxMihAtgrVUIWVLB8sGpfSz0ied2unSEKRQaBmjk/QYLg8X2uHcd1ul53VpiJ3tRM5hfmkkSH9q8K3hOG10gmtOTYn478g9IsvL1aPUxLfMJOsa3XTFEgtZeS7annLyH/KHIS2KfK6WXPy9FDxUDf339OxwxjAvG3fcLyPHK2S5qqJUGgg6KaqHbIgEyi9PC0QLuuKa/lGMh1w6vjCf3JfmLLdQnr0vWbF9hfyQdqRLk+sODYM1BC/YWzmfFrRUocDhvsnEpkhd/OwZ1McdnIihf7MOocIYvKDfoRwZEo/MZ8rGkC9wUiFHY/TF8OQzFm3Wc6U/tfTNa/AVoAUya+hNC94N6PrtwQsd8KnXh/J1QsFDt7ILOL5FTeBw+5pank/7zJJPxhRFX/nZfyG/BlorYlJf7b0TyfcP0ignmiTGAtUAAAAASUVORK5CYII="
-                          alt="brand-logo4"></div>
-                      <div class="marquee-img-main"><img class="brand-logos"
-                          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFUAAAAoCAYAAACPSbZFAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAR+SURBVHgB7ZrvdZswEMDPff1eNoBOUHeCkAnqTBB3gqQTOJ3AyQTYEziZwGQCOxNAJ7AzwVVnTuFQJYNB/tfn33t6gJCO06FD4iRAPyTgQN0LVBqpNFdpxeVXfH2rUgg7oMrHKo1VysTzSd6M5MEpgHs0qsq/F4Z0QfdHDfQM2HB1ZCr14ZigHxKL3AR3Y7xFxxCrPbMJx+u16IfEkDnCdowcOmbYjhiOAfohEfJC7EZs6DfC9mRwBD6Bfx6gG3fG9RDaEynDDuDA7MOoQ+gGje4BnbBBIujGwb+tXo2Kfr5hZNCIz79Bdw4+E9hHT/XBFz5G0J0IDsypGvWs8W1UX6PtOx+X0B0fMnbCq1F7vd4fdVhDN3IlRxviDbpz3kZlHqEbH/WVcVN1SKEbD3Bg9mHUJ5VyaEeu0tTI+w3tmbD3HBTvRlWNIPe/gXbccH0pL4V2vS1X6RccA/SDLaBCk/isYX2KVF3V6DnC5ixwx5CiV9APrtBfiPXRqqSpAbD+RTUKI+6bHm4JMO9Aqtx06rrJRruG4g+J/pjIxWlUfjHdvQlYxEupZ0csL4diQHtrI+/ChQsXLly4cKEjYo539PkdFnsBFnjsJeYd4Lm41vtWZ56EUdXzB0KXGZwJWGzskD8fwSkFqVMoAzHPcJ5s1tY+byuBxZpTBEWMM3WUIUExXy6gCDBvlkPMCBGXpcU8+utZyPv0J6Tu37BiS1H+QxbrE5h1hXz6c/tO8qW+phyjPPHOz9/6PKG/tMcjl6GyD5s/Opv7O/6xMzT+0dG+rWcuzkNRdoz/MpYNFPm3nJcIt1qYdbmRYJSV+g6Me5mhf6Xthgz5vE1MAattzdAVs7AIDtHNSgtSx6GlESbhFoNqxg2M6iKx6CIbPutg1CbMbTa1fVMn4py6dgxlNJ56xj2f656dqxSpbv8V+FMBVcVDUYfu3XDS5ai3x1DPM+sSi7pkTJopyB5DgRv6BMRKp7Zx3Y1sVb8H1ZWHeyMvtta0vK1KLxDl5vptY7VXjY1yd+JeaFz3RblY5N9hvfsHjrq3xrXWMcHSU7Scxj1VlBlty0PLJ2Db6L92XAfQntwhv07m2gjp2VYHfgr5ERQ7ZVL5Mg6FzagpH4fiTdNR97KlsWpK7nvPPS2G0tU1ckVUzoV/WJ7pIqJnOOrm4kjLJ+T6E12P01rIkW3aDxYXqBuArrjcAOvRDZiLvBUao6hupMhzDVQLR105EM4MnfuGrhlWd3UT+3V/1QsnUF1oi8Q5fahfuRwNHNLlCOoRton7UJQLoHR3mo/GUM+aU1/UzUXdFyh740Do/Eh7CFjXJZTtiaH7/gQnPSx3HL+JTQzaPYasBOVPbUsVXC7SMqDYZbeZLfBIKcuSPL3p7JUbq++RsbRbpzzZTqB8ITEUn5bApo+h7+bl6g5gPP+K5T2J523ajsXnK2Tdp1ynr3W25UHLJSErWOzB125Hx5jdLNOuCh1Bx6j934Lb9+Gv0EOk6VyN2jqgwjOAGIqRVnd//U29lp+SDuRQzAxSOCP+AhZkQz9XzajHAAAAAElFTkSuQmCC"
-                          alt="brand-logo5"></div>
-                      <div class="marquee-img-main"><img class="brand-logos"
-                          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGYAAAAbCAYAAACOY/p9AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAOxSURBVHgB7ZrvVdswEMAPHt+bToA7AWECzASFCeJOkDABMEHDBAkTkE6AOwF0gogJEiZQ79A5MeIkS7Hy54N/7+n5WdKdJZ2kOykBiERrnWHqQ8fhwEaZ0xM6tspRTGU0yAs++kcItIRX3TeI5x9+fsk6LuxCLPsLewTb1MPHmZX9ju169dTv8euS+sZ5wR8ca8MLJIBX3iZcsHwmFcKewSYUQrOePfWpH8+YJpieqH80NseBH7vFx5Bfl9CRDFwhCh8lpimYlVNQ/kmTIBrlCh93tSwFHakpMb1hekRDTWnVeQ3DTn5iZSvoSErNL075feo0DBuF9kbbEb3C9lgG6H+HSNgv0crPwfRHgRmEakByS4Sc8KxBx5LThx7ekkLaMcLUZ1mSmaHsI4RCTl57nG9btOz8JxHyQc6f/KN2M9froOZTfk2+x47ZxwLTgOuLzh/TyCN/G9rpsUdJBgnQOzCM9hvFR90wk0CZCdeXDLMIkB/U234idLgegUnkOjwqne/rXEEDBJ+Dlk100O5QQHtCziW0xa22tBOrIXYEJhE8q5FziOMK25A7yko08i8IZwDtyR35JSbyQT2uk0N7+tj3rPJVK8NoOQJrw8h12vVQPwXbZBCINifnXCgihzsGMzNPwayGAuKgwOCy9n7PY9d0f1iCmfQUvAwd36U2qdWbXt+BpaLRmW3wvWdL3uljtDk9SwyEdlwJ9eZcNnTombBcJugrXPqsepLfWQVW1cn/CSJmZAMU/t3DfvnhyP8j5C3ADa0s6aajADNmc20irqZtUwl53huUY1RKSzvVNb7CFOMHdkp1+WnxvaE+bVsK3OSY6LQ+goQc48fJFwQB7pkI3PhLR+dDmXo+fxmhR2yDls9gP8ED+0n6Nk240lP1t465FW4g6BKzxqmn7Drk9LsjXEHHVK9vp3u8WxQuJZUPoX7RNQlPDpqcNw4Rr5FjiDWMa9lvEoFtDZ4g0qrJMJUcJJBvGTaoGmgTpNBq6Nd0z2DLxBrmTMi7w8Y+wOExhjRkYA5/L7UIa+6oqyARsYbJrPdDiMBc0GRRAfVC6tTJHPmzlLccbQyj4PAjsGvwDzyV+SbWG4RB2/gNJKTxhzKLKupQ0D4Ce4Wvgxbrp0pfIfk93HrIYdOBtxBkaWL1BD2K5SlYKFk+h6+rpbpJeKiNxULQJ/VL6v/qJ43YP2NUt5fnh+TsQ9Hrv12pTSaV/vxHi7eDiEL1+gqkKZLp2CXa3D+F/aDTsTtSnmo7mvkPGvG3YBbNTlwAAAAASUVORK5CYII="
-                          alt="brand-logo6"></div>
-                      <div class="marquee-img-main"><img class="brand-logos"
-                          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIwAAAAdCAYAAAB4+oTYAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAb3SURBVHgB7Vrtcds4EF177v/pKjhcBXEqOLqCKBWYqSC6CsxUYKcC6ipwrgK5AycVUKmA6WCPK741lxAAQrKSkTV6MxgK4C4+H3cXgIgywMzOy6+4hzNlMzrj5HGZeikkEHJ0P58yCHHXyTRdKuiMk0WSMBcXFz/wU8hSxuRgaeS9PNd0xsliizDd4l95LugTnu/i1VCB57Ij2drUVdAZQcB6L7oklrlGmtMeED3o39GB0NVVIvR46NINyj76QkKWFq7FmfIWMUuB/CiGgTxbgnS/b1F2SzsCkzlHpyUV0jc6EZi5WarbR76iPSB60G/ogEA4ouu76aNvYdZIrksrQ5rPeM4Dlc4hv+6syyPKhCQVRL5TfgcdOikDL8wrIYtlfEGvFPIBUD836y4tjNs/Zqyp9zSPW2/A+CdlLBZxhnzrfRHO/C6hf8sDStoBaG9k3QIyLvX+2GHmqw6UVbQHfqKFmeHpbD4oGCDN86DM78J2NEUWnthlce96NnXSCYMH974wZatjJEwIl2iwQadLycNMXnfpK8E9delf6NwYfY1PHnnshj50dSxRt8RFEoxJG6k4ROtd02lDP5zX4Iq2cGkWsehSDfJINCwDs6QRQqzxW3UsASo8N2SB9dmc4XRpgfpyAldHZxw/4BKeeAwh0DxQHoKY2gXcUuuVVxkuaQl5actl9ncD5MWSPfAQGDfWanq64mLv0JbKP/nyPOz+7iN9mHHAxUTaq80YLayLr4zOFeZSx1Tj2eJZGNmoS+IhnHBev2/NmFcYa827xofoqD+wlqfhy6y4X9SsKwMe4qHNwHkiYGZDmA43mNiZNynap7kp/4jyrdNrM/E19DXfJvpxr+OldH91i6oo7TuUVabvUm9B8XmSMVx5/Q4RRup2Jn/Fgc0F98RqbL07ARWUPHxlOWhjA81ss/Lqa7B4VwFZS5hVpD4l/hfk56beWURHCXDHw+6QY2PiMdGLxNiyCTMF9iwfRwjD3mEgD6SQ5Cg+luj82K1sKuWizagreZrJcZKueGyGLWFcpC4lTGPGKigT7Y9IwsNiPkTkLWGqxJhK/Ga/Dzy4/IoyYMZRI79FGO5dzsLTq61epO42OUf861HS9ITIlyDxUBPQv4PMKIaJ1PNMGB6sS5vRvi7gAmmjx4GvjntCLVN1Q0bPNLbmwYyzogzwBGG4J0vl6UxaS2/swbjtty79RXGIK5A7pJLy8Ej99vsxITO5ncR9lHT4HhMrOzSH17KA32n3bWmB59cM2W/Uj/1Nl/5B+3oB+zyR3Fu2NWTkWEAWpdATb8iIzvpXnehyv8MVy+Kvq3XrQqjYlY3D83faoVFrivdBw70FcHQg8NhV6Y5sg4SOtTCjeGaiLZXVuCMY2LLZVXDEdfF20KkoTVmDsory5kLlfQvT8uBS7jwdtciTFjaFS1OhbrWkQpmYgvqvWO4QJicZsvKlralnqQym4X22agHgIPAa7cjX/jfth30mTMdfGILI05nb+f+MjLqfgnrrsqYdwcNttm75dXsta5Paeb7Hc8Fh1/MiSycHdw6dkIms0JlH6hdfzJp8wXM0FDPnuohilt9Sv7B6MlxSTxwZbDLgnQImXuvN2q4H8EeGzJ94fkO7jzRMdImnmPRPRmdJwzyozI0nkwXMU4M2Pnftv+3S+y5dS6L4ov9AX7XNmrfjLkcvwCUav8JTbqWv0THx1eIPK7z7YOS0w2s8v+C3vBfyfe30S+oJ9xnvCjrMcfi+dSjZ32TIOk9HoDf2H2FdRrEKYhS1Mu8g88c+1oWGmOmLbSMXnU5Fwwm97oiex/Jii899zOIfYtXGL16ZfG18qPrFJx72+Jr36yvpADD90LgiN4ZxPGCW0CmMjj0ItPoPHD5BLozMisMHb4rSlDUoq5BvbT5Qh8qnttWOvYNLntoy7wv2yOJ10nm/dRtW8ARpJtp0OTI8HOYpWbMIg/zzoVxCZwWZReJdk9BvUzI8oDRlDRuCmHbuKTwHiihhUG6PBJzJJ0+ldwKHyVLahnhMmIX3bmfScB/gLTl+qjvjYZek1iyHMM8TZup5QNki0MadXbhEfWWizSolwwNKU7ZCmZ7cFmYNfCu34uEjffDajF0N2PVR2dtI/2acezXA46NzF2i0RL5B3vH4zmZmBqYyNWUCekseLsR0chr8rkwbOYRRIjLqeTC6Kx6sVW3aKCbqS16O6tgT79nOpdFZ8XCxWPLwgWgfdZfkzLhaMw7m+OXj6II0Mv7azPmCcsH9V+S8BkedMR10yKuprzy90YXgMYKP/B98IIejnwQd/8HWiQP3DwHCFMi3x06QM34ieOxunClvAmUrlL3orOWMVw6Yq9IrCxFGrExBZ5w0LmgPwIrowdIhDuPOeCX4HwI1cODnpkx1AAAAAElFTkSuQmCC"
-                          alt="brand-logo7"></div>
-                      <div class="marquee-img-main"><img class="brand-logos"
-                          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHUAAAAgCAYAAAAsRzf4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAQrSURBVHgB7VrRcdswDEV6+Y8zgdUNlAnsTpBuUHWCOhNYnSDOBPUGSSewOkHdCaRMkHgCFIiohIZJCbQlW8np3fFsUgAJEuITQAlACUScox5jGNBvsJMCHDqHAf0HOSpXOjSHAf3HQLsfDAPtvk+c1V00dBpBM4qzs7PP8AFBazCin4uqTvN8rJHj68/QVwy0W4Lmloi5Thwy894z1kC7b2hyKtVj7NlNfu5pz0AHpt2fcCBoEVZQT/MFlQcuPvrrGS6p9MdOPAHtoj5lYszgiEAd/d5a1/vFXBhGu7fQEgKd6lzYrqBxqpEboQmWTg1Jv0vQoaByMO16kBHFfqkqtFAx/VxTSS2ZBZUrFJEpYVNFn0bvgup/5ABGj53DNPlE5ZHk1rAn0GIs+g+WDc7I2chXc8xdNtaMU+k1200KM9Sj1Z0idurKI7MSNozZDtGWmLbc1Ze5tvLMiXUSx7ga+s1d9tP/Xw6bV56xvbS9j90V7T6hDq3RbtOiCJm5sGOCu06VMqsafR/+okWj2K5Tc6zHrWLejbqfzG9KRfM8KKCkvlMgUsikrkYs72R5jSkyg3JONpi276EbROZ37Rl7Zt809F8+dsDoLaHMBqTuvFJMUI8EOgA27FQsmcSWyU37xGEjMw5Hoz/MorgCsbno/xp3mWriWZ9Dd+pY6EqZe0+/T7ibI48dMiMOlPiumUIzNvZD2SyMRo9z2e+gR4zbjmUGiYXM0qNbsE12LmscG9m6Mrem+m+S+wrb+XkKb0FJW0gcefYNFR67YsqXuRoHRpbcQgZU3BeWGy0zTdzHt/N9oj5zt6VK8QjCwIZNa64vaw48MseiTUX9zqXIC0bzKuDN3hhahivK5UiZxs2gdCzUjY9uppSPzdh3otSETCmXtngCxDcfO/SuQUYisisNN/Hakj9mzul6CSDHT0GHUbBTDe1GCtF9jxB5Ye1To43pS/P2Y+NoC3lr0ovDg0MR5NRA2p3CfnjWJuPa/uwKz6GGPSKf3gkgx2d61jwqN6E7NVPKtUm7h+KfqCfgOA0zz6vIasrgtJAOjDmgk0ImELy0mh5AC9QnwcHfKaHi8MGjNxFjJw6ZEe6mKzNHP52nNDXzcMrh9imSK6WJcdfusWqn4nFotxOY6JJ3pn1a85LHQpkCRbAbIyxqHgEL0rWpMYHukMJ2upJhGSkXUNo8lfLMkFr6zZRyfaLdV5BN7Ag+WE+t5gjcAR9H2DfgR+upjg8mzUph2+6pRzytAtNP0ADsPto9CoxtfAjiCzZ4980CD0o6h7H7Cvwbq7L7de2bPjxj2i1Ah+m+USuKo7OQ3S50N5rUx+jwjqsCjLUvf8Xd13tbMKc6Tvsx7KM1jZy0Ow9ec9S/vG79zc2ADoAB0S725I3/gBpg2GctR/u0ZMABwIF2PxYG2n3/+A+LnKv+lhWL1gAAAABJRU5ErkJggg=="
-                          alt="brand-logo8"></div>
-                      <div class="marquee-img-main"><img class="brand-logos"
-                          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIwAAAAdCAYAAAB4+oTYAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAb3SURBVHgB7Vrtcds4EF177v/pKjhcBXEqOLqCKBWYqSC6CsxUYKcC6ipwrgK5AycVUKmA6WCPK741lxAAQrKSkTV6MxgK4C4+H3cXgIgywMzOy6+4hzNlMzrj5HGZeikkEHJ0P58yCHHXyTRdKuiMk0WSMBcXFz/wU8hSxuRgaeS9PNd0xsliizDd4l95LugTnu/i1VCB57Ij2drUVdAZQcB6L7oklrlGmtMeED3o39GB0NVVIvR46NINyj76QkKWFq7FmfIWMUuB/CiGgTxbgnS/b1F2SzsCkzlHpyUV0jc6EZi5WarbR76iPSB60G/ogEA4ouu76aNvYdZIrksrQ5rPeM4Dlc4hv+6syyPKhCQVRL5TfgcdOikDL8wrIYtlfEGvFPIBUD836y4tjNs/Zqyp9zSPW2/A+CdlLBZxhnzrfRHO/C6hf8sDStoBaG9k3QIyLvX+2GHmqw6UVbQHfqKFmeHpbD4oGCDN86DM78J2NEUWnthlce96NnXSCYMH974wZatjJEwIl2iwQadLycNMXnfpK8E9delf6NwYfY1PHnnshj50dSxRt8RFEoxJG6k4ROtd02lDP5zX4Iq2cGkWsehSDfJINCwDs6QRQqzxW3UsASo8N2SB9dmc4XRpgfpyAldHZxw/4BKeeAwh0DxQHoKY2gXcUuuVVxkuaQl5actl9ncD5MWSPfAQGDfWanq64mLv0JbKP/nyPOz+7iN9mHHAxUTaq80YLayLr4zOFeZSx1Tj2eJZGNmoS+IhnHBev2/NmFcYa827xofoqD+wlqfhy6y4X9SsKwMe4qHNwHkiYGZDmA43mNiZNynap7kp/4jyrdNrM/E19DXfJvpxr+OldH91i6oo7TuUVabvUm9B8XmSMVx5/Q4RRup2Jn/Fgc0F98RqbL07ARWUPHxlOWhjA81ss/Lqa7B4VwFZS5hVpD4l/hfk56beWURHCXDHw+6QY2PiMdGLxNiyCTMF9iwfRwjD3mEgD6SQ5Cg+luj82K1sKuWizagreZrJcZKueGyGLWFcpC4lTGPGKigT7Y9IwsNiPkTkLWGqxJhK/Ga/Dzy4/IoyYMZRI79FGO5dzsLTq61epO42OUf861HS9ITIlyDxUBPQv4PMKIaJ1PNMGB6sS5vRvi7gAmmjx4GvjntCLVN1Q0bPNLbmwYyzogzwBGG4J0vl6UxaS2/swbjtty79RXGIK5A7pJLy8Ej99vsxITO5ncR9lHT4HhMrOzSH17KA32n3bWmB59cM2W/Uj/1Nl/5B+3oB+zyR3Fu2NWTkWEAWpdATb8iIzvpXnehyv8MVy+Kvq3XrQqjYlY3D83faoVFrivdBw70FcHQg8NhV6Y5sg4SOtTCjeGaiLZXVuCMY2LLZVXDEdfF20KkoTVmDsory5kLlfQvT8uBS7jwdtciTFjaFS1OhbrWkQpmYgvqvWO4QJicZsvKlralnqQym4X22agHgIPAa7cjX/jfth30mTMdfGILI05nb+f+MjLqfgnrrsqYdwcNttm75dXsta5Paeb7Hc8Fh1/MiSycHdw6dkIms0JlH6hdfzJp8wXM0FDPnuohilt9Sv7B6MlxSTxwZbDLgnQImXuvN2q4H8EeGzJ94fkO7jzRMdImnmPRPRmdJwzyozI0nkwXMU4M2Pnftv+3S+y5dS6L4ov9AX7XNmrfjLkcvwCUav8JTbqWv0THx1eIPK7z7YOS0w2s8v+C3vBfyfe30S+oJ9xnvCjrMcfi+dSjZ32TIOk9HoDf2H2FdRrEKYhS1Mu8g88c+1oWGmOmLbSMXnU5Fwwm97oiex/Jii899zOIfYtXGL16ZfG18qPrFJx72+Jr36yvpADD90LgiN4ZxPGCW0CmMjj0ItPoPHD5BLozMisMHb4rSlDUoq5BvbT5Qh8qnttWOvYNLntoy7wv2yOJ10nm/dRtW8ARpJtp0OTI8HOYpWbMIg/zzoVxCZwWZReJdk9BvUzI8oDRlDRuCmHbuKTwHiihhUG6PBJzJJ0+ldwKHyVLahnhMmIX3bmfScB/gLTl+qjvjYZek1iyHMM8TZup5QNki0MadXbhEfWWizSolwwNKU7ZCmZ7cFmYNfCu34uEjffDajF0N2PVR2dtI/2acezXA46NzF2i0RL5B3vH4zmZmBqYyNWUCekseLsR0chr8rkwbOYRRIjLqeTC6Kx6sVW3aKCbqS16O6tgT79nOpdFZ8XCxWPLwgWgfdZfkzLhaMw7m+OXj6II0Mv7azPmCcsH9V+S8BkedMR10yKuprzy90YXgMYKP/B98IIejnwQd/8HWiQP3DwHCFMi3x06QM34ieOxunClvAmUrlL3orOWMVw6Yq9IrCxFGrExBZ5w0LmgPwIrowdIhDuPOeCX4HwI1cODnpkx1AAAAAElFTkSuQmCC"
-                          alt="brand-logo9"></div>
-                    </div>
+                    <ul class="marquee__content">
+                      <li class="marquee-img-main" style="--c:#FFF">
+                        <span class="tech-chip"><span class="tech-icon">AI</span>Ai Tools</span>
+                      </li>
+                      <li class="marquee-img-main" style="--c:#3b9ddd">
+                        <span class="tech-chip"><span class="tech-icon">WP</span>WordPress</span>
+                      </li>
+                      <li class="marquee-img-main" style="--c:#d30c5c">
+                        <span class="tech-chip"><span class="tech-icon">E</span>Elementor</span>
+                      </li>
+                      <li class="marquee-img-main" style="--c:#9b6bff">
+                        <span class="tech-chip"><span class="tech-icon">Woo</span>WooCommerce</span>
+                      </li>
+                      <li class="marquee-img-main" style="--c:#8892bf">
+                        <span class="tech-chip"><span class="tech-icon">php</span>PHP</span>
+                      </li>
+                      <li class="marquee-img-main" style="--c:#ff2d20">
+                        <span class="tech-chip"><span class="tech-icon">L</span>Laravel</span>
+                      </li>
+                      <li class="marquee-img-main" style="--c:#00a8c6">
+                        <span class="tech-chip"><span class="tech-icon">SQL</span>MySQL</span>
+                      </li>
+                      <li class="marquee-img-main" style="--c:#e34f26">
+                        <span class="tech-chip"><span class="tech-icon">H5</span>HTML5</span>
+                      </li>
+                      <li class="marquee-img-main" style="--c:#2965f1">
+                        <span class="tech-chip"><span class="tech-icon">C3</span>CSS3</span>
+                      </li>
+                      <li class="marquee-img-main" style="--c:#ffdb59">
+                        <span class="tech-chip"><span class="tech-icon">JS</span>JavaScript</span>
+                      </li>
+                      <li class="marquee-img-main" style="--c:#bc8cff">
+                        <span class="tech-chip"><span class="tech-icon">B</span>Bootstrap</span>
+                      </li>
+                      <li class="marquee-img-main" style="--c:var(--color-primary)">
+                        <span class="tech-chip"><span class="tech-icon">API</span>REST APIs</span>
+                      </li>
+                      <li class="marquee-img-main" style="--c:#f06bff">
+                        <span class="tech-chip"><span class="tech-icon">Git</span>Git &amp; GitHub</span>
+                      </li>
+                    </ul>
                   </div>
-                  <div class="logos-slide">
-                    <div class="marquee__content">
-                      <div class="marquee-img-main"><img class="brand-logos"
-                          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHQAAAAlCAYAAACTSM11AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAVtSURBVHgB7VqBdds4DEWywHmD401w6QSnm6C+CaIN4k5gdYI4E9iZwO4E8k3gdAKrE9gboIIFxhBMSqRqO0qj/56eLRIEQYIAAVIAHYCIo/KZls8Wj8jLJ4UB7wul0u6UIjWWpHAY0H+UijJKmaS8CT+5KJ/DgP6DFCWUljjqM1E/hgH9BSlQKCtroFsyzRYG9BfCpW5b6IxQfAoD+gdlnWkA/cwqvy8BEgdzBiLB7RJ+7uBKEH0mXeRuY57HuFGs0ppdm3u+BhyB3DSyfS7a5nAlYB1ZaLvbAMZp+ZPw61cIwM3Nzb78eeLXhze2UgrOjHjP8DdOq1oVWsKu6KJU1ALCMSsfUixN3gTeDgY+EBoVytZp+DXIOi16ZKV2YVk8sWwfD2Lv6ZSC9GUv5X00ww5R93vbQ5sYphgR2TbwsYcNu/e4d/1OQdE9/zr3TqzCaTrym5fPIy8A4+Bz1r2Ure1ReI8dTzr1P2Z5DjKJNnPxjLnsTpUT36ngm3v6v+P+rOfZcPvEQzsXc6QvNV5lh/Zxjz39Ggho7M07eeA5+jF18FuIAXS20rLtAzZjJ/5vRTuJzDFG3fa1vRrrzkEn8dgwjweeEW1D25E8zYaCnrwTT3M6u0qW2JDrYf30qJOVYrWyYxCrUGd7bF68LszBr9A2ZB6ZQzDxTVyTdc59dVyfifpE1VkrjQ6wsL4gLHKs3Kx1/VtV30WhJP+Y6xJwK3Qn6MZiXKjnpqGPRMhd4+2RmbBhempH41465Bq5Js95uI6V/7fwWpmYgFWDUlKIU+hcCZ85aEY8aNTyu9ri6WQn0DyeA0907FlY7ZXSFeeePlJH25miMQ6Zlx7ZMj22W0VAzOy1l8475TnmCvz4xr9/y8IysCrKnzW/3kMc5FXcuuSVaQLOLb9DdxQhNDwO3fcLHHNuQoLuYKVwlL2od1eM4RwXz8NaFH3WUW7TqZARjArwY6/pBewiSXwWoYGVG5GD/Ab9hFaMgTAU6j02aJTKNq8K5RWV8qvrVGgvaJs6tXWFrigXwhqOKyr0kHzkk6NneCu5ZL8jaaGv1gl1M7aQZU3XSP8IPi7EWqmeqKtdYUXCqPdrKVhubfuDQpV1rjz7BAm45tcHB2O9Bz+7aGKtVPVLuEd/Mv0HXBZOz8QeS46l4H310v0aqMcXK2uhMkh5Aj/+59+xZ1I/i/9r8CPWSuXioMHlKL5ZQj6BgfrgLgF78mNE3wnJA3ULXcN5QQcqE7vV8XjT8u9G0T1bobYc9jZ+rYf1w/a5qjOhfJje8plBALCekljsuE/X6U1s2mI8/eboxtbXLx5Tj9bUyEeDfmw95Yc5v8WIKzJ1JZYqAacQd9Vm+dxj2HHgf+COCA3ER4bngHH0W5TPvy1ZwDn61SD3/oX+kMu17nYdKAhZlKWb49H8Uy77GsHHHtq3ukrm+Qk8ezNUbu4ZLos1+LekBVxOmWQghaOc5o/m+5O9473B6riJJvVLWRjq/hKo9g3CCqrI00AVDPwFgSj5bLgtXTpPItqNRJ+Ely5BCAo3G6MIbkf9kxyHoO1XLs2x7u73Pl4875a2gGrce01kkUKcEDOHHzeRPBbS/w/4dZDL7bSy2KKkVSw6uJs/+fcHDDgLSKFWKVEJO1ZpgmxDqUxs0m/pz5mzfWzg8QpnF+oysbp9t5ipUDro4B2P95tbfIefpvQWHKVahWyalIqnXytkolwqddrS573mMeCMwHpyS4pJpdXg8XubnU8RTLNx8DGC5k5Z9wYGXAZY3b6ffFfjKUsa+GR4Cte3ODkOrvayYCtboBs5K6tVCYKP62iMrDiFARfBja+CrdAmzkXXExCsIl/Dry8XPhb78PgJ6pbs6dWEW5gAAAAASUVORK5CYII="
-                          alt="brand-logo1"></div>
-                      <div class="marquee-img-main"><img class="brand-logos"
-                          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHIAAAAfCAYAAAA7t5n5AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAkqSURBVHgB7Vs9c9zGGX4XWHzc8Y6jJK04ObdJCrqkG1NFJumszHjUivYfsCT/AFPpLVm1J2O5jCcZW52SFJIbM11YWJlJRY4tdbFF3/cdgFs/z2IhgzDPFnk4jjW+R7MD7C6wOOLB+71SsiCe9iZPlDE95ftfeEoeia/3/Ez2mk31paxwblCyIL588v8nyleiAF/5ogNtfN9XWvt/Re/WitDzwcJE/vd/B0+4jud7AgKN9rUKdGCCMBA0nOsVoecALQui3+/ha/CM8iCRkEQQZ3QAEqdahWFkoii6EgbhK72eebPdVo9khaVgYSK7vZ54UKye5xmtA5hIX4IgUGEUmjTJJEszlcXpRrMh/xwOzXVI5keyQu1YmMhet2dJpGqFWhWSGYaBSZJE0jCVbJaZ2WwGf0ik0TTvQTIfrSSzftShWg3kURX2kWo1jAITpRGlUWZmJmYGGpUREq5i+Tsk8/crm1kvFpfIXp88Gt+DfQy00C4maZiTmBkxFEWhN0TP1qP0tr2GfxtDr5/mOaZYaD72XbsJB/pQTony+vTA580BlzD9UH5iWJzIfheSBr/Up40MQWSi4OCYWWYlEVcYSyIIFJCN0IRSq7eGidlqBmpP6sOmazt477t42TflZ4TFVWtvYPgBa01phF1ME5KoYBfNMxLz0MQ6Qn7gm2QS0p6+LaeUylNgF2R+WofkYJ0L8gKgBq+1K0gEKMaNdHCsSoVNNLSJjrwittT0ZnUi03BqgjR4BbZy44y28g7ae6U+X/ZltHdKYzx/KM+PN6oD+Cs6OLxVGe64cTmLCl8WPFkQ/W5feoOeGfQHZjgcmeFoKOPxWE3HU5lOJjIZT9RkOpHpdGqJTrLEpGlKwk1qsj/K2XDEl1hq+2i7cpy4zeIEL/7AtQckwR1NxfZ1Sq3AAdq1yrM/cOMHlXE+Z9ut/dQt/9T1d+QEuLmibaK95X5nce8HxUfjfvfHpbUPyvM1eK19qlWFUINhBlNFTNFZVZurW8STmSUOjceZZFnGsARXzrawxPtSHz5F23bnZZXYKZ0/qPQLlKV5V04Bp35J8OXK1AX3e0jwqzhexwd3VJrfLp3frvR57w7XxL1vuPWrf9OOW/vlxVUrnJ0wiEwDxNAeWlWaE6ggeYX0kTxFlUuyQaxifAnd9BupF6+Vzo9OmO/IckASLv/INTvu+ZfmzG/PGSd5H8t8dNCuLa5a+wMZUZ1OxjJNpnB2LEk2EYB/QuLYbH+WIiTJlJjcowetG3I2/NqpsaLxq+Ufu1m65pM59x5K/jJ/UQ0zqlAOleFL5XGnNndK8/tu/Zfc8bA0Z3+vzMcddx8l8GjO734ZreqRX9VPu+O3B4MBMzSICXvCczowsHsy6GIc/QH6XfR5zaDHsa499jEHO2jzqww3SBhEDlHHTCETkCcC8ggkhztiHPP59BmxI8dfXhVHJ/yxBW7WHAdeLZ0fov2p5AQdUu1Jbk8LtTjPCbuH+wp7fNep69ul+Tul373vVPW263e056kbNGw2YPfsd8ZwQnlMhOddwyIJw3nGgSxZ+Z6GCtWMF7mIoSq1KhXxJCJ+hv1wWW1pK6+vsBkXaLs+vFo8Y+Hiy0kgiZd+wKP8ROpFWQvcqz6XNhEv/UP5zvvdnLPO/in7ZX/AOjuP8bCLolxCgyS6AB7xn3VcvNzuMQUHexjmOdRsZhBSULUgo4OUXBDZPCuvK0i1sSOPJBdr2RSdyonm+mD9rDnXI/m+6tl3f9zdikNxDD80d0ZcqPyuk3A05/raoJEk/Rwv+yJzpe7FY0jb2A+E2LEQ+dOEBEap9TipOj3t0ZGxIsVrmc2J4gh51lCBbFvKcpKKa20elh+H0ngO7rWxp5HZYzkb7rhw46cAklSQM4+k5yF7IXiwa//OpcbWEkWH2rjQwVD66H3iCKJCieNY4masWs01WVtbk/Za27RbbdNqtaSJsUazoRpRw/DaKIwovZDW0AR+gI9C57sHQCyJZ7YHqfY6U3TnhSpZZZV3tZoJcnHea3Ourw0eXvV9kMcaoqHdg7qkqpQgshV+gZSZqBGZOAZJzVjWmmtmDcStt9alvd6WVrst7TbIBLFrJLMR454Y9+MjiEEi10ZZC6UtCZGL5XMonfao/PvyYuCwdP5qZa7sVJHEBy647zgPld50p3TNh7IEaKbIuoNkD9KzZVUoAng6MQnDCGRfZgjgEUfQWbHODxwdbuOwahWeqqFtpT30rATDVkYgEiQ24obEOGez6jYM7fYPSCWIDSmZL9IGrXvynbNyzYUczC69RE8SfTpQRRxJZ+Y/c9ah/b4rS0CeEFByC1L5N7xgCRHAI5WmGllmDEMKhhJ0Mhns+3ZzlYqSPFuDSENZB9QWlX0JKHFhoCjFJJBk4qNQOBqrarE+nCLkZbkdRL8rLw52JVePHde/IMdVLOO+b+R4KFIFJfG6LAmWyPVm8FlvkH6WRdmWzcBA0vKqPgvCIAopWToohd20JGYM+Gd2EXq7RT0yQJYHhWWJQ6rYSDUbTUPbynOQiznazuCjmktYS4ULIRiM70pOKEk8Ks9LXj57KDmZm6VrihrpQ1kingVyrERM08m/RuPR+mg0MqPRWEbDkUJfkPQ2EyTAkwkqF2mevUGihqmZQuOKy6/afTskkuo5CmMFm5nb10YEB6ll4kb8OPPC13+12iFQK45F5F/3Jr+DGP4DFQw1GY/NeDyRMQgtqhdsaZKqdIa6hUu12WyN3UHnmXzPTp5npT2kBFpPN46pboXSCdr/8Mt29LmsUCu+l1rpTdIrkLw/TyfTtiWRpSgQyRIUc6lZkkG1MocKqXRloHwXna092tCFXi/tIZ0cqlgQCUKjbqijd1a76JaDE3NklEwI2V+QR71oVSqlkbVEOEG2mmFtaEY/x+SLPMvc2JIWQwt6wHSerIqNosdeELzZjla755aFuclO2kz4rDeSNLlii8JTbuNIIY2Jyomc2fwpmbSZPWZtXAbHhhja7TT39futpn4XdrQrKywNP5q1/mo43EBQcQOe7JXE1RZTlqPg1Tobyf/0wRyqzam6lB6k099DYvwWPWJZYel47vIDJRRVRlT0zRbix9/CPG5AEtetVBrhLuUvEE4+MqL3Wg25v5LA88W3Lt2yoXA6rAsAAAAASUVORK5CYII="
-                          alt="brand-logo2"></div>
-                      <div class="marquee-img-main"><img class="brand-logos"
-                          src="data:image/png;base64,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"
-                          alt="brand-logo3"></div>
-                      <div class="marquee-img-main"><img class="brand-logos"
-                          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGIAAAAZCAYAAADKQPsMAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAANsSURBVHgB7VmNlZpAEB7zUgCpIKSCmAokFYSrIKSCaAWHFZxXAaSCswO9Ck4rkFRwdEBmZIjrMMsBKgc+v/fmre7OsMPOz84ukOlwQYD6FL4d3HAWfIAbeoGbIXqCmyF6gt4bAvchDylCetD2rmvBx7qMo9EowYX4Ah0C5wuwiYwuH/u+oS4p9BSKs6S19K1bNbVRSJDTlBfblaJbAD1GW31tqWnCqSAy0oIHzUCevDPooQXvVuHdexenrLM70HvBlppipW+KL5pg+wtDbQ3dIESi6PgJuQHmOPcSrhBNN2sXaYUGuYcOQLkVKRjl+IS0gCtF7c1aIERjbC/tnTjHGBvf7MM5ae4Qf35WRChqKXJSaTROrRMkeiZFGfFR6oupEAG7Dg7rMGE5og3JolwM9d/Fw+YHyxOej+Sz9njNqjfgleCPmvLSRicnranzzlxIpKc3+KNMv9bx+T2t8xCPkJG4z/Sio5Dfz1uVmtZIM6ZEGScjBNBjZLmjrEBElYIA8pTrGLK/sXmCgwdrcIlHGkNgiuRVyO/ntaWmJYbNnaFUDPkLjQWfh1Q3b5NnerYxuAxoL5M6U0qi1OIyFXCZf8ZeGkJ9RCiztpwXHGNe878579QW5lL5IkxLoQUWVIRjHVSmJh6rLF8z/bY4FDqGCg85TFQla5Gb8piGQKyjTHcvtojQLLuBYUE6U0IbvdnBGz+lINNLfUU2NmVZLhVyCeiIzU2ZCpwsd3Sz8nTbVk1DgFxMihAtgrVUIWVLB8sGpfSz0ied2unSEKRQaBmjk/QYLg8X2uHcd1ul53VpiJ3tRM5hfmkkSH9q8K3hOG10gmtOTYn478g9IsvL1aPUxLfMJOsa3XTFEgtZeS7annLyH/KHIS2KfK6WXPy9FDxUDf339OxwxjAvG3fcLyPHK2S5qqJUGgg6KaqHbIgEyi9PC0QLuuKa/lGMh1w6vjCf3JfmLLdQnr0vWbF9hfyQdqRLk+sODYM1BC/YWzmfFrRUocDhvsnEpkhd/OwZ1McdnIihf7MOocIYvKDfoRwZEo/MZ8rGkC9wUiFHY/TF8OQzFm3Wc6U/tfTNa/AVoAUya+hNC94N6PrtwQsd8KnXh/J1QsFDt7ILOL5FTeBw+5pank/7zJJPxhRFX/nZfyG/BlorYlJf7b0TyfcP0ignmiTGAtUAAAAASUVORK5CYII="
-                          alt="brand-logo4"></div>
-                      <div class="marquee-img-main"><img class="brand-logos"
-                          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFUAAAAoCAYAAACPSbZFAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAR+SURBVHgB7ZrvdZswEMDPff1eNoBOUHeCkAnqTBB3gqQTOJ3AyQTYEziZwGQCOxNAJ7AzwVVnTuFQJYNB/tfn33t6gJCO06FD4iRAPyTgQN0LVBqpNFdpxeVXfH2rUgg7oMrHKo1VysTzSd6M5MEpgHs0qsq/F4Z0QfdHDfQM2HB1ZCr14ZigHxKL3AR3Y7xFxxCrPbMJx+u16IfEkDnCdowcOmbYjhiOAfohEfJC7EZs6DfC9mRwBD6Bfx6gG3fG9RDaEynDDuDA7MOoQ+gGje4BnbBBIujGwb+tXo2Kfr5hZNCIz79Bdw4+E9hHT/XBFz5G0J0IDsypGvWs8W1UX6PtOx+X0B0fMnbCq1F7vd4fdVhDN3IlRxviDbpz3kZlHqEbH/WVcVN1SKEbD3Bg9mHUJ5VyaEeu0tTI+w3tmbD3HBTvRlWNIPe/gXbccH0pL4V2vS1X6RccA/SDLaBCk/isYX2KVF3V6DnC5ixwx5CiV9APrtBfiPXRqqSpAbD+RTUKI+6bHm4JMO9Aqtx06rrJRruG4g+J/pjIxWlUfjHdvQlYxEupZ0csL4diQHtrI+/ChQsXLly4cKEjYo539PkdFnsBFnjsJeYd4Lm41vtWZ56EUdXzB0KXGZwJWGzskD8fwSkFqVMoAzHPcJ5s1tY+byuBxZpTBEWMM3WUIUExXy6gCDBvlkPMCBGXpcU8+utZyPv0J6Tu37BiS1H+QxbrE5h1hXz6c/tO8qW+phyjPPHOz9/6PKG/tMcjl6GyD5s/Opv7O/6xMzT+0dG+rWcuzkNRdoz/MpYNFPm3nJcIt1qYdbmRYJSV+g6Me5mhf6Xthgz5vE1MAattzdAVs7AIDtHNSgtSx6GlESbhFoNqxg2M6iKx6CIbPutg1CbMbTa1fVMn4py6dgxlNJ56xj2f656dqxSpbv8V+FMBVcVDUYfu3XDS5ai3x1DPM+sSi7pkTJopyB5DgRv6BMRKp7Zx3Y1sVb8H1ZWHeyMvtta0vK1KLxDl5vptY7VXjY1yd+JeaFz3RblY5N9hvfsHjrq3xrXWMcHSU7Scxj1VlBlty0PLJ2Db6L92XAfQntwhv07m2gjp2VYHfgr5ERQ7ZVL5Mg6FzagpH4fiTdNR97KlsWpK7nvPPS2G0tU1ckVUzoV/WJ7pIqJnOOrm4kjLJ+T6E12P01rIkW3aDxYXqBuArrjcAOvRDZiLvBUao6hupMhzDVQLR105EM4MnfuGrhlWd3UT+3V/1QsnUF1oi8Q5fahfuRwNHNLlCOoRton7UJQLoHR3mo/GUM+aU1/UzUXdFyh740Do/Eh7CFjXJZTtiaH7/gQnPSx3HL+JTQzaPYasBOVPbUsVXC7SMqDYZbeZLfBIKcuSPL3p7JUbq++RsbRbpzzZTqB8ITEUn5bApo+h7+bl6g5gPP+K5T2J523ajsXnK2Tdp1ynr3W25UHLJSErWOzB125Hx5jdLNOuCh1Bx6j934Lb9+Gv0EOk6VyN2jqgwjOAGIqRVnd//U29lp+SDuRQzAxSOCP+AhZkQz9XzajHAAAAAElFTkSuQmCC"
-                          alt="brand-logo5"></div>
-                      <div class="marquee-img-main"><img class="brand-logos"
-                          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGYAAAAbCAYAAACOY/p9AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAOxSURBVHgB7ZrvVdswEMAPHt+bToA7AWECzASFCeJOkDABMEHDBAkTkE6AOwF0gogJEiZQ79A5MeIkS7Hy54N/7+n5WdKdJZ2kOykBiERrnWHqQ8fhwEaZ0xM6tspRTGU0yAs++kcItIRX3TeI5x9+fsk6LuxCLPsLewTb1MPHmZX9ju169dTv8euS+sZ5wR8ca8MLJIBX3iZcsHwmFcKewSYUQrOePfWpH8+YJpieqH80NseBH7vFx5Bfl9CRDFwhCh8lpimYlVNQ/kmTIBrlCh93tSwFHakpMb1hekRDTWnVeQ3DTn5iZSvoSErNL075feo0DBuF9kbbEb3C9lgG6H+HSNgv0crPwfRHgRmEakByS4Sc8KxBx5LThx7ekkLaMcLUZ1mSmaHsI4RCTl57nG9btOz8JxHyQc6f/KN2M9froOZTfk2+x47ZxwLTgOuLzh/TyCN/G9rpsUdJBgnQOzCM9hvFR90wk0CZCdeXDLMIkB/U234idLgegUnkOjwqne/rXEEDBJ+Dlk100O5QQHtCziW0xa22tBOrIXYEJhE8q5FziOMK25A7yko08i8IZwDtyR35JSbyQT2uk0N7+tj3rPJVK8NoOQJrw8h12vVQPwXbZBCINifnXCgihzsGMzNPwayGAuKgwOCy9n7PY9d0f1iCmfQUvAwd36U2qdWbXt+BpaLRmW3wvWdL3uljtDk9SwyEdlwJ9eZcNnTombBcJugrXPqsepLfWQVW1cn/CSJmZAMU/t3DfvnhyP8j5C3ADa0s6aajADNmc20irqZtUwl53huUY1RKSzvVNb7CFOMHdkp1+WnxvaE+bVsK3OSY6LQ+goQc48fJFwQB7pkI3PhLR+dDmXo+fxmhR2yDls9gP8ED+0n6Nk240lP1t465FW4g6BKzxqmn7Drk9LsjXEHHVK9vp3u8WxQuJZUPoX7RNQlPDpqcNw4Rr5FjiDWMa9lvEoFtDZ4g0qrJMJUcJJBvGTaoGmgTpNBq6Nd0z2DLxBrmTMi7w8Y+wOExhjRkYA5/L7UIa+6oqyARsYbJrPdDiMBc0GRRAfVC6tTJHPmzlLccbQyj4PAjsGvwDzyV+SbWG4RB2/gNJKTxhzKLKupQ0D4Ce4Wvgxbrp0pfIfk93HrIYdOBtxBkaWL1BD2K5SlYKFk+h6+rpbpJeKiNxULQJ/VL6v/qJ43YP2NUt5fnh+TsQ9Hrv12pTSaV/vxHi7eDiEL1+gqkKZLp2CXa3D+F/aDTsTtSnmo7mvkPGvG3YBbNTlwAAAAASUVORK5CYII="
-                          alt="brand-logo6"></div>
-                      <div class="marquee-img-main"><img class="brand-logos"
-                          src="data:image/png;base64,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"
-                          alt="brand-logo7"></div>
-                      <div class="marquee-img-main"><img class="brand-logos"
-                          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHUAAAAgCAYAAAAsRzf4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAQrSURBVHgB7VrRcdswDEV6+Y8zgdUNlAnsTpBuUHWCOhNYnSDOBPUGSSewOkHdCaRMkHgCFIiohIZJCbQlW8np3fFsUgAJEuITQAlACUScox5jGNBvsJMCHDqHAf0HOSpXOjSHAf3HQLsfDAPtvk+c1V00dBpBM4qzs7PP8AFBazCin4uqTvN8rJHj68/QVwy0W4Lmloi5Thwy894z1kC7b2hyKtVj7NlNfu5pz0AHpt2fcCBoEVZQT/MFlQcuPvrrGS6p9MdOPAHtoj5lYszgiEAd/d5a1/vFXBhGu7fQEgKd6lzYrqBxqpEboQmWTg1Jv0vQoaByMO16kBHFfqkqtFAx/VxTSS2ZBZUrFJEpYVNFn0bvgup/5ABGj53DNPlE5ZHk1rAn0GIs+g+WDc7I2chXc8xdNtaMU+k1200KM9Sj1Z0idurKI7MSNozZDtGWmLbc1Ze5tvLMiXUSx7ga+s1d9tP/Xw6bV56xvbS9j90V7T6hDq3RbtOiCJm5sGOCu06VMqsafR/+okWj2K5Tc6zHrWLejbqfzG9KRfM8KKCkvlMgUsikrkYs72R5jSkyg3JONpi276EbROZ37Rl7Zt809F8+dsDoLaHMBqTuvFJMUI8EOgA27FQsmcSWyU37xGEjMw5Hoz/MorgCsbno/xp3mWriWZ9Dd+pY6EqZe0+/T7ibI48dMiMOlPiumUIzNvZD2SyMRo9z2e+gR4zbjmUGiYXM0qNbsE12LmscG9m6Mrem+m+S+wrb+XkKb0FJW0gcefYNFR67YsqXuRoHRpbcQgZU3BeWGy0zTdzHt/N9oj5zt6VK8QjCwIZNa64vaw48MseiTUX9zqXIC0bzKuDN3hhahivK5UiZxs2gdCzUjY9uppSPzdh3otSETCmXtngCxDcfO/SuQUYisisNN/Hakj9mzul6CSDHT0GHUbBTDe1GCtF9jxB5Ye1To43pS/P2Y+NoC3lr0ovDg0MR5NRA2p3CfnjWJuPa/uwKz6GGPSKf3gkgx2d61jwqN6E7NVPKtUm7h+KfqCfgOA0zz6vIasrgtJAOjDmgk0ImELy0mh5AC9QnwcHfKaHi8MGjNxFjJw6ZEe6mKzNHP52nNDXzcMrh9imSK6WJcdfusWqn4nFotxOY6JJ3pn1a85LHQpkCRbAbIyxqHgEL0rWpMYHukMJ2upJhGSkXUNo8lfLMkFr6zZRyfaLdV5BN7Ag+WE+t5gjcAR9H2DfgR+upjg8mzUph2+6pRzytAtNP0ADsPto9CoxtfAjiCzZ4980CD0o6h7H7Cvwbq7L7de2bPjxj2i1Ah+m+USuKo7OQ3S50N5rUx+jwjqsCjLUvf8Xd13tbMKc6Tvsx7KM1jZy0Ow9ec9S/vG79zc2ADoAB0S725I3/gBpg2GctR/u0ZMABwIF2PxYG2n3/+A+LnKv+lhWL1gAAAABJRU5ErkJggg=="
-                          alt="brand-logo8"></div>
-                      <div class="marquee-img-main"><img class="brand-logos"
-                          src="data:image/png;base64,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"
-                          alt="brand-logo9"></div>
-                    </div>
+                  <div class="logos-slide" aria-hidden="true">
+                    <ul class="marquee__content">
+                      <li class="marquee-img-main" style="--c:#3b9ddd">
+                        <span class="tech-chip"><span class="tech-icon">WP</span>WordPress</span>
+                      </li>
+                      <li class="marquee-img-main" style="--c:#d30c5c">
+                        <span class="tech-chip"><span class="tech-icon">E</span>Elementor</span>
+                      </li>
+                      <li class="marquee-img-main" style="--c:#9b6bff">
+                        <span class="tech-chip"><span class="tech-icon">Woo</span>WooCommerce</span>
+                      </li>
+                      <li class="marquee-img-main" style="--c:#8892bf">
+                        <span class="tech-chip"><span class="tech-icon">php</span>PHP</span>
+                      </li>
+                      <li class="marquee-img-main" style="--c:#ff2d20">
+                        <span class="tech-chip"><span class="tech-icon">L</span>Laravel</span>
+                      </li>
+                      <li class="marquee-img-main" style="--c:#00a8c6">
+                        <span class="tech-chip"><span class="tech-icon">SQL</span>MySQL</span>
+                      </li>
+                      <li class="marquee-img-main" style="--c:#e34f26">
+                        <span class="tech-chip"><span class="tech-icon">H5</span>HTML5</span>
+                      </li>
+                      <li class="marquee-img-main" style="--c:#2965f1">
+                        <span class="tech-chip"><span class="tech-icon">C3</span>CSS3</span>
+                      </li>
+                      <li class="marquee-img-main" style="--c:#ffdb59">
+                        <span class="tech-chip"><span class="tech-icon">JS</span>JavaScript</span>
+                      </li>
+                      <li class="marquee-img-main" style="--c:#bc8cff">
+                        <span class="tech-chip"><span class="tech-icon">B</span>Bootstrap</span>
+                      </li>
+                      <li class="marquee-img-main" style="--c:var(--color-primary)">
+                        <span class="tech-chip"><span class="tech-icon">API</span>REST APIs</span>
+                      </li>
+                      <li class="marquee-img-main" style="--c:#f06bff">
+                        <span class="tech-chip"><span class="tech-icon">Git</span>Git &amp; GitHub</span>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </section>
@@ -178,7 +539,12 @@
                   <h2 class="section-heading-text about-me fade_up show">About Me.</h2>
                   <div class="line"></div>
                 </div>
-                <p class="section-sub-text about-sub-text zoom_in">Hi, my name is <span>Sameer Biswas</span> and I am a results-driven WordPress &amp; PHP Developer with 3+ years of experience building high-performing, mobile-responsive websites and database-driven web applications in Laravel. Specializing in custom theme customization, WooCommerce platforms, Elementor Pro layouts, and RESTful API integrations, I focus on delivering clean code, 90+ Google PageSpeed Insights optimization, and reliable 99%+ uptime for businesses worldwide.</p>
+                <p class="section-sub-text about-sub-text zoom_in">Hi, my name is <span>Sameer Biswas</span> and I am a
+                  results-driven WordPress &amp; PHP Developer with 3+ years of experience building high-performing,
+                  mobile-responsive websites and database-driven web applications in Laravel. Specializing in custom
+                  theme customization, WooCommerce platforms, Elementor Pro layouts, and RESTful API integrations, I
+                  focus on delivering clean code, 90+ Google PageSpeed Insights optimization, and reliable 99%+ uptime
+                  for businesses worldwide.</p>
                 <div class="about-detail-main">
                   <p class="about-detail">Name</p>
                   <p class="about-detail-info">Sameer Biswas</p>
@@ -228,7 +594,8 @@
                       <div class="small_yellow_border_main">
                         <p class="bachelor">Diploma in Computer Science Engineering</p>
                         <p class="cursus university">Government Polytechnic, Nainital / 2020 - 2022</p>
-                        <p class="cursus">Core technical education covering computer networks, database management systems, algorithms, web technologies, and software engineering principles.</p>
+                        <p class="cursus">Core technical education covering computer networks, database management
+                          systems, algorithms, web technologies, and software engineering principles.</p>
                       </div>
                     </div>
                     <div class="education position-relative fade_up">
@@ -240,7 +607,8 @@
                       <div class="small_yellow_border_main">
                         <p class="bachelor">UI/UX &amp; Graphic Design Certification</p>
                         <p class="cursus university">Simplilearn Upskill / Certified</p>
-                        <p class="cursus">Professional specialization in modern user experience design, wireframing, typography, Figma, and human-centered design principles.</p>
+                        <p class="cursus">Professional specialization in modern user experience design, wireframing,
+                          typography, Figma, and human-centered design principles.</p>
                       </div>
                     </div>
                     <div class="education position-relative fade_up">
@@ -252,7 +620,8 @@
                       <div class="small_yellow_border_main">
                         <p class="bachelor">Full Stack Web Development Certification</p>
                         <p class="cursus university">Udemy / Certified</p>
-                        <p class="cursus">Comprehensive training in modern PHP, MySQL relational databases, JavaScript, HTML5, CSS3, Bootstrap, and RESTful web services.</p>
+                        <p class="cursus">Comprehensive training in modern PHP, MySQL relational databases, JavaScript,
+                          HTML5, CSS3, Bootstrap, and RESTful web services.</p>
                       </div>
                     </div>
                   </div>
@@ -270,7 +639,9 @@
                       <div class="small_yellow_border_main">
                         <p class="bachelor">REMOTE WEB DEVELOPER</p>
                         <p class="cursus university">Predicta Digital / April 2026 - Present</p>
-                        <p class="cursus">Engineered and shipped 5+ WordPress websites, maintaining 99%+ uptime and optimizing Core Web Vitals to achieve 90+ PageSpeed Insights scores using WP Rocket and database query optimization.</p>
+                        <p class="cursus">Engineered and shipped 5+ WordPress websites, maintaining 99%+ uptime and
+                          optimizing Core Web Vitals to achieve 90+ PageSpeed Insights scores using WP Rocket and
+                          database query optimization.</p>
                       </div>
                     </div>
                     <div class="education position-relative fade_up">
@@ -282,7 +653,8 @@
                       <div class="small_yellow_border_main">
                         <p class="bachelor">WORDPRESS &amp; PHP DEVELOPER</p>
                         <p class="cursus university">Next Web Guru Techno Service Pvt. Ltd. / 2023 - 2026</p>
-                        <p class="cursus">Designed and launched 20+ responsive WordPress and WooCommerce websites. Programmed core custom modules for a Laravel MLM system and tuned server performance.</p>
+                        <p class="cursus">Designed and launched 20+ responsive WordPress and WooCommerce websites.
+                          Programmed core custom modules for a Laravel MLM system and tuned server performance.</p>
                       </div>
                     </div>
                     <div class="education position-relative fade_up">
@@ -293,83 +665,97 @@
                       </div>
                       <div class="small_yellow_border_main">
                         <p class="bachelor">FREELANCE WEB DEVELOPER</p>
-                        <p class="cursus university">Self-Employed / 2022 - 2023</p>
-                        <p class="cursus">Developed custom business websites, eCommerce shops, and landing pages using PHP, WordPress, Elementor, and frontend responsive frameworks.</p>
+                        <p class="cursus university">Self-Employed</p>
+                        <p class="cursus">Developed custom business websites, eCommerce shops, and landing pages using
+                          PHP, WordPress, Elementor, and frontend responsive frameworks.</p>
                       </div>
                     </div>
                   </div>
                 </div>
               </section>
-              <section class="coding-skill-section">
-                <div class="heading-container">
-                  <h2 class="section-heading-text coding-skill-text fade_up">Coding Skills.</h2>
-                  <div class="line"></div>
+              <section class="skills-section" id="skills">
+                <div class="skills-heading">
+                  <h2 class="skills-title">Skills &amp; Tools.</h2>
+                  <span class="skills-line" aria-hidden="true"></span>
                 </div>
-                <div id="progress">
-                  <div data-num="95" class="progress-item fade_up" data-value="95%"
-                    style="background: conic-gradient(rgb(188, 231, 12) 95%, rgba(128, 128, 128, 0.28) 0deg);">95%</div>
-                  <div data-num="90" class="progress-item fade_up" data-value="90%"
-                    style="background: conic-gradient(rgb(255, 117, 156) 90%, rgba(128, 128, 128, 0.28) 0deg);">90%
-                  </div>
-                  <div data-num="88" class="progress-item fade_up" data-value="88%"
-                    style="background: conic-gradient(rgb(0, 204, 151) 88%, rgba(128, 128, 128, 0.28) 0deg);">88%</div>
-                  <div data-num="82" class="progress-item fade_up" data-value="82%"
-                    style="background: conic-gradient(rgb(255, 219, 89) 82%, rgba(128, 128, 128, 0.28) 0deg);">82%</div>
-                  <div data-num="85" class="progress-item fade_up" data-value="85%"
-                    style="background: conic-gradient(rgb(111, 57, 253) 85%, rgba(128, 128, 128, 0.28) 0deg);">85%</div>
-                  <div data-num="92" class="progress-item fade_up" data-value="92%"
-                    style="background: conic-gradient(rgb(255, 125, 97) 92%, rgba(128, 128, 128, 0.28) 0deg);">92%</div>
-                </div>
+
+                <h3 class="skills-subtitle">What I do best</h3>
+                <ul class="skills-rings">
+                  <li class="skills-ring-box" style="--c:#3b9ddd">
+                    <div class="skills-ring" style="--target:95" role="img" aria-label="WordPress, 95 percent">
+                      <span>95%</span>
+                    </div>
+                    <p class="skills-ring-label">WordPress</p>
+                  </li>
+
+                  <li class="skills-ring-box" style="--c:#d30c5c">
+                    <div class="skills-ring" style="--target:95" role="img" aria-label="Elementor, 95 percent">
+                      <span>95%</span>
+                    </div>
+                    <p class="skills-ring-label">Elementor</p>
+                  </li>
+
+                  <li class="skills-ring-box" style="--c:#e34f26">
+                    <div class="skills-ring" style="--target:95" role="img" aria-label="HTML, 95 percent">
+                      <span>95%</span>
+                    </div>
+                    <p class="skills-ring-label">HTML</p>
+                  </li>
+
+                  <li class="skills-ring-box" style="--c:#2965f1">
+                    <div class="skills-ring" style="--target:90" role="img" aria-label="CSS, 90 percent">
+                      <span>90%</span>
+                    </div>
+                    <p class="skills-ring-label">CSS</p>
+                  </li>
+
+                  <li class="skills-ring-box" style="--c:#9b6bff">
+                    <div class="skills-ring" style="--target:90" role="img" aria-label="Bootstrap, 90 percent">
+                      <span>90%</span>
+                    </div>
+                    <p class="skills-ring-label">Bootstrap</p>
+                  </li>
+
+                  <li class="skills-ring-box" style="--c:#8892bf">
+                    <div class="skills-ring" style="--target:80" role="img" aria-label="PHP, 80 percent">
+                      <span>80%</span>
+                    </div>
+                    <p class="skills-ring-label">PHP</p>
+                  </li>
+
+                  <li class="skills-ring-box" style="--c:#ff2d20">
+                    <div class="skills-ring" style="--target:70" role="img" aria-label="Laravel, 70 percent">
+                      <span>70%</span>
+                    </div>
+                    <p class="skills-ring-label">Laravel</p>
+                  </li>
+
+                  <li class="skills-ring-box" style="--c:#00a8c6">
+                    <div class="skills-ring" style="--target:75" role="img" aria-label="MySQL, 75 percent">
+                      <span>75%</span>
+                    </div>
+                    <p class="skills-ring-label">MySQL</p>
+                  </li>
+                </ul>
+
+                <h3 class="skills-subtitle">Also work with</h3>
+                <ul class="skills-pills">
+                  <li class="skills-pill" style="--c:var(--color-primary)"><span class="skills-pill-icon">SEO</span>Speed &amp; SEO
+                  </li>
+                  <li class="skills-pill" style="--c:#3aa0ff"><span class="skills-pill-icon">API</span>REST APIs</li>
+                  <li class="skills-pill" style="--c:#f06bff"><span class="skills-pill-icon">Git</span>Git &amp; GitHub
+                  </li>
+                  <li class="skills-pill" style="--c:#ffdb59"><span class="skills-pill-icon">RWD</span>Responsive Design
+                  </li>
+                  <li class="skills-pill" style="--c:#ff7d61"><span class="skills-pill-icon">cP</span>cPanel &amp;
+                    Hosting</li>
+                  <li class="skills-pill" style="--c:#bce70c"><span class="skills-pill-icon">Fig</span>Figma to Code
+                  </li>
+                  <li class="skills-pill" style="--c:#FFF"><span class="skills-pill-icon">Ai+</span>Ai Tools
+                  </li>
+                </ul>
               </section>
-              <section class="design-skill-section">
-                <div class="heading-container">
-                  <h2 class="section-heading-text design-skill-text fade_up">Design Skills.</h2>
-                  <div class="line"></div>
-                </div>
-                <div class="design-skill-sub-section">
-                  <div class="design-skills-img-main flip_up"><img
-                      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAsCAYAAABygggEAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAUPSURBVHgBvZdbbFRVFIb/tc9l2ulQZExLmxIUAojcEmxEgkQxeL9gfCixwRhJBEQTH0wgQUMcH4xNUCr4gBAfCBFiQHlAhXqLBI0WAqZRbJAgNlJoU6elltLOzDlnL9c5LZeaqcyZOvMlM+eyL/9ea++91j6E6+AEVM+JqtttWM9rYDFAs4gQRRbIiqK0ai6MyDiMDl+Qv/1y3U2bdzaPaH/l5txDk+IxGysU6C0iKsMNyE34Kv3y2wGdeRuNH3aKMaz8t92PxMvHR9Qag9TWXETzICYmroUyt2BN/c3+i0CYjOhiBr+KQsIoFaUliNrPcSKhAmFFtI5AMRQcqoAy6tF3dprqWlIRk4legOJRAceoVW65OVPmNYpiQRyFqauU5ZooKkwGiGyVUaVt8uigaHBKFtrfquaz00m5+Q1Fg5Jw0RKsapf0dhFPo+BwH1j/iLT9cyDsKDok+/hLFBJCRoRb4Hm7aMeOgUC40hp3LqPdNzyNDxjow/+PIx79FFo3IFV6dGgcw3BtrdVdlZymDO8JxbhLMS2QyDJptJ5yTBKdItgqK/kITG5Cn/WTWBss5Kt7iU6ccPbW1Z2O62eaNEXGm7h0i0FeJcOws3VpkNs5PX18y8RId6f/3GXdVHqg5s57z0cmzO63yqa6SkUdUmlJOq2uVl9sW7nw6IiBX7lJLGGzugILS0y8Kf6fKmlxvBT6CUNltYVxSnuoX7mPWiZ+lZ6ryF4vbxdJm7hMlx8NTbkOyvUv2bftUn9bRw8+wXIavGrx9tVsGUk8aJlolIpT2TcIuRGIKjshI1lGw/3RNaskMWCylFXJdUN1nCZ37OVGXzywxrqI6VYEDVJxuu/FHDXxew3iYunLpPl+um7asmBL+W3ikaerJ+BR/0UgbBp4RQpmISTfz/GeFWuWimm5nAZ8L84lhdWTmjgeCGvCYxhlLv+LgVLjHjlN+G7MdWZknDwDyltovl/Hs0SxEiHpjaFGG2zJbQThiLmgKWbECERDWytJbVzudl5jaLWrmEoBbciD0jSSxEghT9Taj6hN9uyFkO1QNoik0miTreciHF0mvF8CF0vjfXLRCMmEfj4kVocZdJqZzqPXaA6EPcIeUf0TIZnTqg5qcHMuVksdj/1pZWdP+3LqCYTTDlpFeKOUnpTHDHJk9nkkHc97R6z+XNpelN+oXpNFdUb27a6OXmu3/xwIv7SP+p1L2O94eE1i6mF5dVY6689FvPth+5gHZ6MHPii9nxTxruuKU2Kln0R+cD13c0cvGq/E6hEbwk8U3h1/zE7bellEm09JOpvHirOGUI/4lCtJYtOmKS3+88T9XMnR1Dxl2g/IGT04LnugNlPjOKcufdOxrPzUvzwwzLcJMxLBrSpqPMkSe8UXMyQn+/k4a1rUIuyxrnfmJ1qQB0OB/fh2qwztM1nZq1hjlXxZlPiroZAEwiXoqGYz8qIE0hfyCEZ5MfTRBqNOgvdKFJGhGG1gBYUP9mMTLvmuYbKIzkGRURRJ+SvXQpFRnlOQc/SNhTMZnJGviMsIiWSmdjWYW3TL2h73JVLk8dcIC+FYmeIu5MnwyYN3hrOaW4n4SE8TjcFiYcDAYWLemmObHolq79nuQDMSidA5fIQw5id6lcHvauYNYnlytMpS1i4xep2h9ccXaxvGtChHRMh48+vlly1aBKWWSlp8XGL2TBEbkGqnxSMHmNWhskHr1+Td6/vls6TA0bxA/APPzNrlDIGnvwAAAABJRU5ErkJggg=="
-                      alt="figma-img">
-                    <div class="skill-counter-main">
-                      <p>95%</p>
-                      <p>WORDPRESS &amp; ELEMENTOR</p>
-                    </div>
-                  </div>
-                  <div class="design-skills-img-main photoshop flip_up"><img
-                      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAATtSURBVHgB1VlLbxtVFP7ueGI7qZ3YeZGEQKympJUalKgFNSygXZASCVasumCBBIgFC1iw4AeABCuyYYGKhMqqC8RDFIlHpTaiUo3UhEQ0Im1p5JQ2maSta2IndvyY4Zw7HTdxYo9x7Wb8Sdeeuffa88253zn3zByBHRHyorfjCB2MQWCYWoiOA2YTXlQdRow+NBigbyMC3ZhALvcTtOlI4UyBQqI97S/BJT6AECPYVRBx6ONYzZ1CbDpm9bry44HhANp97xPZj4nsPuw6BK2mcgxuZR/8vX8jfmuZe03CTNanvgdFvGtOdAxUMt4ghOFFU+cMElrMJNzx+BgU5W0iG4ITIcQBamtYdYdd6D58gMi+Qx0vwrlQ5Wdz03UFQhki7xyG02EGgWMqVBGigxCcDy+R7lMofHTJk7qAEVBIDk6KCjYQRLieIOqNMGS4MALbdugCeDr60NgzAKXBvW1Mz6SRjd9FaiWCbCKKWkMtZ1Lz/ufQPfomXI3+onNyyThWr4Rx+8JprN24jFqhapLgmwkOj6L/jXF08c15fagFqq5hJt4+8iqRP45aoCxJFCI2O4HopTMkgwRUf6uUDLcGf5sc52///hGSxp9ILl5DNVER4XR0CYnrU8ilEvI8NnMWwaFRKQVvZ0j2eclRPR2hLYTdwW40D4zIm/PQPHZi1n5qZYH0f1E2O8etiPBOiNMN+PZO5QmzlS2LM3x7D5HjvgVf/6GtP6Sb4AjU9OSgPI1O/ljyOlXTcC4Vz1u8EEXJVoCqWZityXq2oGfTMLIb8pgt2NjzVH5sbeEy4vOT8tgd7EHTpjE7VIWwUN1oOXhUatMCazNLTsnhjbVrxfAMbTLRyTO4E/52y+95jkE3WRPC3s4+eqoalRdo8LUR0RE09Q1CUT35OcnFq7KZln5AhFciOHRcOlpifkr28fjG7YWyrl0RYSuMFcM6Eb1HkcMiwds2RxZ3a7c8Zy33943LCHLn4jf4l8JkMf0XwoWWnhPymakE9pAH++kiSoPH7v8k2eVzX2H1rwsk5JzsyyTuQvW1SC0LxbQRf7tbOhEYPEr//zTS95Zks4FWFcJ6ZgPJ5Xms/HYa2s+fYy0ykycrx9NJrJOjGbkcOdjAtv9hy3N/Jh61k4ZWkSSYGCc5Jtm0DGl2DsNLrp39Qi5/6zOvSCf13JcIg63fcvAFqftSlq4oDjNBawmztNzleLeF5NI13PrhU1wZfw1Lv5yU0cQCRwpupVDzBJ7DWuvhl2XbnMGxxdcpDeVo8X9QtY2jFHi5O58/YeYNpFGOGJxHcP9mi/KDAMfpUngkhC3w5sEOvOd+3rAZfDNrN2Zt4/EjJVwMG2RxdmJOWe1AhEXKbhLntdq5U/lwxKlluZDR4deTMnXkHVGmlbQj6pRnsARkXnE1XE4MlhB44tkvKQ6/jnqAgTC/+bG1sHNgpOhloKgjwoIIQ2h0VCekDU2h4gcVQwwNzkeK1DDHhCfo5DycjzkYTJhLS7p+nqwcgWMhy2Lfw7UxYdY42h6j7UVtpIHh2tThHhIGvkNW/ww3/7hpEo5pKQQ7pmGowlmkKeQa+Bo6PsHiJfnC7kGdTpJuCENvnJXVJCF6sZtgiRr4EGrmI/wzFbG6d37PGqK6Xc59hOpjY7JgI8Blha7a1fBYoyJG16JoJeaodPs7cukdS7f/Ac8o9ZjVE0T8AAAAAElFTkSuQmCC"
-                      alt="photoshop-img">
-                    <div class="skill-counter-main photoshop-text">
-                      <p>90%</p>
-                      <p>PHP &amp; MYSQL</p>
-                    </div>
-                  </div>
-                  <div class="design-skills-img-main adobe-xd flip_up"><img
-                      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAUfSURBVHgB1VldaBxVGD0z+8OKgYZCkoVma9ssdBuwu9A0/iBkFWrEB6kg+OJDfRBf+m4ffPRVUXzpYwtFqSi1iBgpyAhqtG1gYjCJ0MQ1WliJxBXWmuw2mX5nZmdzczu73SS73cmB3Zm5883ec8/9fu7ONRCAPIaTESTGTJh5A2bOgJF04PQahtGLDsBxnBJgFOWsJH3NS19XK6hYFuySbmtsJZpPxHHnVWk+ZxjIoIsQ0rZ8vS/Er6rEI/4JVY0DbwnZt0XJQXQZnFXSisBMpND7SwHLZba7hPPI9cbxyFkxO9upad8JhEtCvkciiJH0NEm7hI/isTflcC5MZH2Ia0blkIkiUU4hPRURdXMRRM4I2RxCCk9pRA2sLZgxRJ+QiycRckgQUtisaSBySEaQRMhRc9dDQhihJ+vDEa6mg40E9gychCli7xnC4g2JKL/QRQz0DOC13BmcSr/gXpcrZVyyL+Dz2c8CrI1EtJHCR/YPYWh/un7NH1pcWcBf5WKQOVL7UvJMGvFI3L3+5/8VLIg9j+1EtNGNgZ4kTg+/UiddWa/g8sxH+GTmY1TlXMWj8R68ePQlvCz2Pq7Mfoq55Tm0G2ajGz8XpzF1+7pLlKBy2WQOx/qO3Wd7PJmVz2bdWVi5Jc/b+K9SxkMjzM5uCuH55dl6W6ZvGI8LsVht2gmqS7L+TNB1Jpe+cwfcCZjNbnJKSbpcU4oqP33wGYwcOFm30dXlAG/evtERdYlos5v01cml7131xg4/57bxfOTAqBCbkwHE3AGo6uqzooNZ4Sl30KNunFAEzlJbCBN//LvkkqA7sAPCI+yRUtWlHdUNwqBkEQYlB96zDYLbJkzQHxlEfq4kcfWcYKB9+9s3+FMGqINuw1yrDq6jhJl7LSEzuO+gZInhGomtnXNAQYHGfM70qNvzNzlIgi7lD7wthD1CXpobUoqDSpa+HhRoJKqSpZ9fuzXhVjKS1ivdg2CiRTAA58RvfVVUsOOgCsjqxxlRfZZkL9kXG1bMthFmJLPzlLiFDk/F7H3t/TLN/cpUk+SiDHg3Ka9lwiTEdBQU4fQ/Rn9Gq4K0Ve0bzcR20BLhoGr2g1vN7LoN75+QdBfT/LvdaInwqfT4lqAgUS6CeFTXGieFcFZxDd6rKAslzkSr2WDHhJmWqJ4/tVSXRFk4/KMPFhe6hk+KS0t1ecl2/tZuSDclTFdg6VXTkppvudZQVSbUAOR6WM8qHNDrJ95whdgJmuZhBhH9Uld3sUaCqY6lmMqyXBNUj8FJolzw0/64uyz1Cg5dJy+kKYQfgNtRvKHCVJck/I6IoGrmrc42V3QEnyNpBiDtWbJXtH8eJM4UyY9aiHgebxK4DQmPHX62vkIjdHVV+GsNtVM/ADkLX/76BT6cfM8tPA+C7vc6jHGMfiVvKbbURSrDFKYWCb/2N0r6tD2ilW3PLTYH6BcfrqcHa8rS/0mQq0IOnM/of8HqcGAZz2P0irxVOY29AMeZaLnShQHy5mdV3vxgd7XyIUJecpdMfmHvoCQu4cyL1gWEHN7GDQriEg4Tq43wwxLalnkNN+wNrE/ICELry1RXXNf6Gten3SxRxd3L0nxBbqwiZPA4OefXsHaR1+6mTAHF1RT6p+SV/Lpc5mp7Cl0HyW5g43wVd961MPM32+r7dB7pPlt2P3+Xy+5vI0giEDd4p4rqBz5Zwgiy9fbt4nnJ0ePyZMbbVjCSndy6ZXqVBFCUvmzZLv5Jmq0J/FjQbe8BW5dOPsGt4NAAAAAASUVORK5CYII="
-                      alt="adobe-xd-img">
-                    <div class="skill-counter-main adobe-xd-text">
-                      <p>92%</p>
-                      <p>WOOCOMMERCE</p>
-                    </div>
-                  </div>
-                  <div class="design-skills-img-main sketch flip_up"><img
-                      src="data:image/png;base64,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"
-                      alt="sktech-img">
-                    <div class="skill-counter-main sketch-text">
-                      <p>82%</p>
-                      <p>LARAVEL &amp; APIS</p>
-                    </div>
-                  </div>
-                  <div class="design-skills-img-main invision flip_up"><img
-                      src="data:image/png;base64,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"
-                      alt="invision-img">
-                    <div class="skill-counter-main invision-text">
-                      <p>90%</p>
-                      <p>SPEED &amp; SEO</p>
-                    </div>
-                  </div>
-                </div>
-              </section>
-              <section class="awards-section overflow-hidden">
+              <!-- <section class="awards-section overflow-hidden">
                 <div class="heading-container">
                   <h2 class="section-heading-text coding-skill-text fade_up">Awards.</h2>
                   <div class="line"></div>
@@ -391,7 +777,8 @@
                         </div>
                         <div class="flip-box-back">
                           <div class="inner">
-                            <p class="flip-back-text">Optimized WordPress client sites to 90+ Google PageSpeed Insights through advanced WP Rocket caching and asset minification.</p>
+                            <p class="flip-back-text">Optimized WordPress client sites to 90+ Google PageSpeed Insights
+                              through advanced WP Rocket caching and asset minification.</p>
                           </div>
                         </div>
                       </div>
@@ -413,7 +800,8 @@
                         </div>
                         <div class="flip-box-back">
                           <div class="inner">
-                            <p class="flip-back-text">Maintained flawless reliability and 99%+ uptime across high-traffic agency client websites and remote web services.</p>
+                            <p class="flip-back-text">Maintained flawless reliability and 99%+ uptime across
+                              high-traffic agency client websites and remote web services.</p>
                           </div>
                         </div>
                       </div>
@@ -435,7 +823,8 @@
                         </div>
                         <div class="flip-box-back">
                           <div class="inner">
-                            <p class="flip-back-text">Successfully engineered and delivered over 20 responsive WordPress &amp; WooCommerce client portals with Next Web Guru Techno.</p>
+                            <p class="flip-back-text">Successfully engineered and delivered over 20 responsive WordPress
+                              &amp; WooCommerce client portals with Next Web Guru Techno.</p>
                           </div>
                         </div>
                       </div>
@@ -457,19 +846,26 @@
                         </div>
                         <div class="flip-box-back">
                           <div class="inner">
-                            <p class="flip-back-text">Engineered scalable database schemas, referral tracking logic, and user authentication modules for custom Laravel platforms.</p>
+                            <p class="flip-back-text">Engineered scalable database schemas, referral tracking logic, and
+                              user authentication modules for custom Laravel platforms.</p>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </section>
+              </section> -->
               <section class="Services-section services-custom-section" id="services">
                 <div class="services-header-wrap fade_up show">
-                  <span class="services-tag-badge">04 / SERVICES</span>
-                  <h2 class="services-headline">What I can <span class="services-accent">build for you.</span></h2>
-                  <p class="services-subline">Focused development services for websites, web applications and ongoing optimization.</p>
+                  <div class="heading-container">
+                    <h2 class="section-heading-text coding-skill-text fade_up show">Services.</h2>
+                    <div class="line"></div>
+                  </div>
+                  <!-- <h2 class="services-headline">What I can <span class="services-accent">build for you.</span></h2> -->
+                  <h3 class="skills-subtitle">What I can <span class="services-accent">build for you.</span></h3>
+
+                  <p class="services-subline">Focused development services for websites, web applications and ongoing
+                    optimization.</p>
                 </div>
                 <div class="services-cards-grid fade_up show">
                   <!-- 01: WordPress Development -->
@@ -479,16 +875,19 @@
                     </div>
                     <div class="service-card-icon">
                       <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2C6.477 2 2 6.477 2 12c0 4.237 2.636 7.855 6.356 9.312L4.62 9.53a8.03 8.03 0 0 1 1.748-.204c.98 0 2.493.12 2.493.12.508.026.568-.722.06-.774 0 0-1.54-.183-3.255-.183l4.63-13.78A10.02 10.02 0 0 0 12 2zm6.758 9.53c0-1.92-.686-3.256-1.274-4.286-.784-1.274-1.52-2.352-1.52-3.626 0-1.42 1.078-2.744 2.597-2.744.113 0 .22.01.328.025A9.97 9.97 0 0 1 22 12c0 3.738-2.052 6.995-5.093 8.687l1.85-6.157c.688-2.057.001-3-.001-3zm-6.608 2.053-3.056 8.878A9.96 9.96 0 0 0 12 22c1.444 0 2.818-.306 4.062-.857l-4.912-8.56zm-1.89-6.312-3.88 11.27A10.01 10.01 0 0 1 2 12c0-2.485.908-4.757 2.416-6.52l3.844 11.791zm3.89 0 .42 1.258 2.378 6.942 1.182-3.954-2.22-6.504c-.604-.055-1.176-.08-1.76-.08z"/>
+                        <path
+                          d="M12 2C6.477 2 2 6.477 2 12c0 4.237 2.636 7.855 6.356 9.312L4.62 9.53a8.03 8.03 0 0 1 1.748-.204c.98 0 2.493.12 2.493.12.508.026.568-.722.06-.774 0 0-1.54-.183-3.255-.183l4.63-13.78A10.02 10.02 0 0 0 12 2zm6.758 9.53c0-1.92-.686-3.256-1.274-4.286-.784-1.274-1.52-2.352-1.52-3.626 0-1.42 1.078-2.744 2.597-2.744.113 0 .22.01.328.025A9.97 9.97 0 0 1 22 12c0 3.738-2.052 6.995-5.093 8.687l1.85-6.157c.688-2.057.001-3-.001-3zm-6.608 2.053-3.056 8.878A9.96 9.96 0 0 0 12 22c1.444 0 2.818-.306 4.062-.857l-4.912-8.56zm-1.89-6.312-3.88 11.27A10.01 10.01 0 0 1 2 12c0-2.485.908-4.757 2.416-6.52l3.844 11.791zm3.89 0 .42 1.258 2.378 6.942 1.182-3.954-2.22-6.504c-.604-.055-1.176-.08-1.76-.08z" />
                       </svg>
                     </div>
                     <div class="service-card-body">
                       <h3 class="service-card-title">WordPress Development</h3>
-                      <p class="service-card-desc">Custom responsive WordPress websites for businesses, organizations and professionals.</p>
+                      <p class="service-card-desc">Custom responsive WordPress websites for businesses, organizations
+                        and professionals.</p>
                     </div>
                     <div class="service-card-footer">
                       <span class="service-arrow-box">
-                        <svg class="service-arrow-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="service-arrow-svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                          stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
                           <line x1="7" y1="17" x2="17" y2="7"></line>
                           <polyline points="7 7 17 7 17 17"></polyline>
                         </svg>
@@ -502,17 +901,21 @@
                       <span class="service-card-num">02</span>
                     </div>
                     <div class="service-card-icon">
-                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M19 11V7a2 2 0 0 0-2-2h-4a2 2 0 0 1-2-2 2 2 0 0 0-4 0 2 2 0 0 1-2 2H5a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2 2 2 0 0 0 0 4 2 2 0 0 1-2 2v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2 2 2 0 0 1 4 0 2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-4a2 2 0 0 1 2-2 2 2 0 0 0 0-4 2 2 0 0 1-2-2z"/>
+                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                          d="M19 11V7a2 2 0 0 0-2-2h-4a2 2 0 0 1-2-2 2 2 0 0 0-4 0 2 2 0 0 1-2 2H5a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2 2 2 0 0 0 0 4 2 2 0 0 1-2 2v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2 2 2 0 0 1 4 0 2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-4a2 2 0 0 1 2-2 2 2 0 0 0 0-4 2 2 0 0 1-2-2z" />
                       </svg>
                     </div>
                     <div class="service-card-body">
                       <h3 class="service-card-title">Custom WordPress Plugins</h3>
-                      <p class="service-card-desc">Custom functionality and plugin development based on business requirements.</p>
+                      <p class="service-card-desc">Custom functionality and plugin development based on business
+                        requirements.</p>
                     </div>
                     <div class="service-card-footer">
                       <span class="service-arrow-box">
-                        <svg class="service-arrow-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="service-arrow-svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                          stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
                           <line x1="7" y1="17" x2="17" y2="7"></line>
                           <polyline points="7 7 17 7 17 17"></polyline>
                         </svg>
@@ -526,19 +929,22 @@
                       <span class="service-card-num">03</span>
                     </div>
                     <div class="service-card-icon">
-                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="9" cy="21" r="1"/>
-                        <circle cx="20" cy="21" r="1"/>
-                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1" />
+                        <circle cx="20" cy="21" r="1" />
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
                       </svg>
                     </div>
                     <div class="service-card-body">
                       <h3 class="service-card-title">WooCommerce Development</h3>
-                      <p class="service-card-desc">eCommerce development, customization and integration for practical business needs.</p>
+                      <p class="service-card-desc">eCommerce development, customization and integration for practical
+                        business needs.</p>
                     </div>
                     <div class="service-card-footer">
                       <span class="service-arrow-box">
-                        <svg class="service-arrow-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="service-arrow-svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                          stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
                           <line x1="7" y1="17" x2="17" y2="7"></line>
                           <polyline points="7 7 17 7 17 17"></polyline>
                         </svg>
@@ -552,18 +958,21 @@
                       <span class="service-card-num">04</span>
                     </div>
                     <div class="service-card-icon">
-                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5a2 2 0 0 0 2 2h1"/>
-                        <path d="M16 21h1a2 2 0 0 0 2-2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1"/>
+                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5a2 2 0 0 0 2 2h1" />
+                        <path d="M16 21h1a2 2 0 0 0 2-2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1" />
                       </svg>
                     </div>
                     <div class="service-card-body">
                       <h3 class="service-card-title">PHP Web Development</h3>
-                      <p class="service-card-desc">Database-driven PHP applications and custom backend functionality.</p>
+                      <p class="service-card-desc">Database-driven PHP applications and custom backend functionality.
+                      </p>
                     </div>
                     <div class="service-card-footer">
                       <span class="service-arrow-box">
-                        <svg class="service-arrow-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="service-arrow-svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                          stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
                           <line x1="7" y1="17" x2="17" y2="7"></line>
                           <polyline points="7 7 17 7 17 17"></polyline>
                         </svg>
@@ -577,21 +986,24 @@
                       <span class="service-card-num">05</span>
                     </div>
                     <div class="service-card-icon">
-                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="5" r="2.5"/>
-                        <circle cx="6" cy="19" r="2.5"/>
-                        <circle cx="18" cy="19" r="2.5"/>
-                        <path d="M12 7.5V13"/>
-                        <path d="M6 16.5v-1a2.5 2.5 0 0 1 2.5-2.5h7a2.5 2.5 0 0 1 2.5 2.5v1"/>
+                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="5" r="2.5" />
+                        <circle cx="6" cy="19" r="2.5" />
+                        <circle cx="18" cy="19" r="2.5" />
+                        <path d="M12 7.5V13" />
+                        <path d="M6 16.5v-1a2.5 2.5 0 0 1 2.5-2.5h7a2.5 2.5 0 0 1 2.5 2.5v1" />
                       </svg>
                     </div>
                     <div class="service-card-body">
                       <h3 class="service-card-title">Laravel Development</h3>
-                      <p class="service-card-desc">Structured Laravel applications using MVC, CRUD, authentication and database integration.</p>
+                      <p class="service-card-desc">Structured Laravel applications using MVC, CRUD, authentication and
+                        database integration.</p>
                     </div>
                     <div class="service-card-footer">
                       <span class="service-arrow-box">
-                        <svg class="service-arrow-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="service-arrow-svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                          stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
                           <line x1="7" y1="17" x2="17" y2="7"></line>
                           <polyline points="7 7 17 7 17 17"></polyline>
                         </svg>
@@ -605,18 +1017,21 @@
                       <span class="service-card-num">06</span>
                     </div>
                     <div class="service-card-icon">
-                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 14l3.5-3.5"/>
-                        <path d="M3.34 19a10 10 0 1 1 17.32 0"/>
+                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 14l3.5-3.5" />
+                        <path d="M3.34 19a10 10 0 1 1 17.32 0" />
                       </svg>
                     </div>
                     <div class="service-card-body">
                       <h3 class="service-card-title">Website Optimization</h3>
-                      <p class="service-card-desc">Speed optimization, caching, image optimization, technical SEO and maintenance.</p>
+                      <p class="service-card-desc">Speed optimization, caching, image optimization, technical SEO and
+                        maintenance.</p>
                     </div>
                     <div class="service-card-footer">
                       <span class="service-arrow-box">
-                        <svg class="service-arrow-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="service-arrow-svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                          stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
                           <line x1="7" y1="17" x2="17" y2="7"></line>
                           <polyline points="7 7 17 7 17 17"></polyline>
                         </svg>
@@ -629,14 +1044,27 @@
                 <div class="popup-content popup-content2"><a class="close" href="/">×</a>
                   <h2 class="simple-steps">WHAT I CAN BUILD FOR YOU</h2>
                   <img class="blog-popup-img1" src="assets/img/gallery-img2.jpg" alt="services-banner">
-                  <p class="blog-sit-text">I provide focused development services for responsive websites, robust web applications, and ongoing optimization. With 3+ years of experience in WordPress, PHP, Laravel, and MySQL, every project is engineered with high performance, clean architecture, and responsive design in mind.</p>
+                  <p class="blog-sit-text">I provide focused development services for responsive websites, robust web
+                    applications, and ongoing optimization. With 3+ years of experience in WordPress, PHP, Laravel, and
+                    MySQL, every project is engineered with high performance, clean architecture, and responsive design
+                    in mind.</p>
                   <h2 class="simple-steps services-popup-text">Detailed Service Capabilities:</h2>
-                  <p class="blog-sit-text"><strong>01. WordPress Development:</strong> Custom responsive WordPress websites tailored for businesses, organizations, and professionals with clean code, Elementor Pro customization, and mobile-first design.</p>
-                  <p class="blog-sit-text"><strong>02. Custom WordPress Plugins:</strong> Tailor-made plugin development and extended functionality based on specific business requirements and workflows.</p>
-                  <p class="blog-sit-text"><strong>03. WooCommerce Development:</strong> Scalable eCommerce solutions, store customization, payment gateway integration (Stripe, PayPal), and checkout optimization for practical business needs.</p>
-                  <p class="blog-sit-text"><strong>04. PHP Web Development:</strong> Custom database-driven PHP applications, backend scripting, RESTful API development, and MySQL schema architecture.</p>
-                  <p class="blog-sit-text"><strong>05. Laravel Development:</strong> Structured, maintainable web applications using MVC architecture, CRUD operations, authentication, and secure database integrations.</p>
-                  <p class="blog-sit-text"><strong>06. Website Optimization:</strong> Core Web Vitals optimization, WP Rocket caching, image compression, database query tuning, technical SEO, and 99%+ uptime maintenance.</p>
+                  <p class="blog-sit-text"><strong>01. WordPress Development:</strong> Custom responsive WordPress
+                    websites tailored for businesses, organizations, and professionals with clean code, Elementor Pro
+                    customization, and mobile-first design.</p>
+                  <p class="blog-sit-text"><strong>02. Custom WordPress Plugins:</strong> Tailor-made plugin development
+                    and extended functionality based on specific business requirements and workflows.</p>
+                  <p class="blog-sit-text"><strong>03. WooCommerce Development:</strong> Scalable eCommerce solutions,
+                    store customization, payment gateway integration (Stripe, PayPal), and checkout optimization for
+                    practical business needs.</p>
+                  <p class="blog-sit-text"><strong>04. PHP Web Development:</strong> Custom database-driven PHP
+                    applications, backend scripting, RESTful API development, and MySQL schema architecture.</p>
+                  <p class="blog-sit-text"><strong>05. Laravel Development:</strong> Structured, maintainable web
+                    applications using MVC architecture, CRUD operations, authentication, and secure database
+                    integrations.</p>
+                  <p class="blog-sit-text"><strong>06. Website Optimization:</strong> Core Web Vitals optimization, WP
+                    Rocket caching, image compression, database query tuning, technical SEO, and 99%+ uptime
+                    maintenance.</p>
                 </div>
               </div>
               <section class="portfolio-section" id="portfolio">
@@ -679,7 +1107,8 @@
                       <div class="portfolio-preview-bottom">
                         <div class="portfolio-preview-text">
                           <div class="portfolio-preview-title">Arcturustech</div>
-                          <div class="portfolio-preview-sub">Portfolio project preview • Replace with live screenshot</div>
+                          <div class="portfolio-preview-sub">Portfolio project preview • Replace with live screenshot
+                          </div>
                         </div>
                         <div class="portfolio-preview-sparkle">✦</div>
                       </div>
@@ -698,9 +1127,10 @@
                         <a href="#portfolio-detail-modal" class="portfolio-details-btn" data-project="0">
                           View Details <span class="portfolio-arrow-right">→</span>
                         </a>
-                        <a href="#portfolio" class="portfolio-live-link">
+                        <a href="https://arcturustech.in/" class="portfolio-live-link">
                           Live Site
-                          <svg class="portfolio-external-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                          <svg class="portfolio-external-svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                             <polyline points="15 3 21 3 21 9"></polyline>
                             <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -730,7 +1160,8 @@
                       <div class="portfolio-preview-bottom">
                         <div class="portfolio-preview-text">
                           <div class="portfolio-preview-title">Predicta Digital</div>
-                          <div class="portfolio-preview-sub">Portfolio project preview • Replace with live screenshot</div>
+                          <div class="portfolio-preview-sub">Portfolio project preview • Replace with live screenshot
+                          </div>
                         </div>
                         <div class="portfolio-preview-sparkle">✦</div>
                       </div>
@@ -749,9 +1180,10 @@
                         <a href="#portfolio-detail-modal" class="portfolio-details-btn" data-project="1">
                           View Details <span class="portfolio-arrow-right">→</span>
                         </a>
-                        <a href="#portfolio" class="portfolio-live-link">
+                        <a href="https://predictadigital.com.au/" class="portfolio-live-link">
                           Live Site
-                          <svg class="portfolio-external-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                          <svg class="portfolio-external-svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                             <polyline points="15 3 21 3 21 9"></polyline>
                             <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -781,7 +1213,8 @@
                       <div class="portfolio-preview-bottom">
                         <div class="portfolio-preview-text">
                           <div class="portfolio-preview-title">Predicta Analytics</div>
-                          <div class="portfolio-preview-sub">Portfolio project preview • Replace with live screenshot</div>
+                          <div class="portfolio-preview-sub">Portfolio project preview • Replace with live screenshot
+                          </div>
                         </div>
                         <div class="portfolio-preview-sparkle">✦</div>
                       </div>
@@ -800,9 +1233,10 @@
                         <a href="#portfolio-detail-modal" class="portfolio-details-btn" data-project="2">
                           View Details <span class="portfolio-arrow-right">→</span>
                         </a>
-                        <a href="#portfolio" class="portfolio-live-link">
+                        <a href="https://predictaanalytics.io/" class="portfolio-live-link">
                           Live Site
-                          <svg class="portfolio-external-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                          <svg class="portfolio-external-svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                             <polyline points="15 3 21 3 21 9"></polyline>
                             <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -832,7 +1266,8 @@
                       <div class="portfolio-preview-bottom">
                         <div class="portfolio-preview-text">
                           <div class="portfolio-preview-title">Heenan Brown Immigration</div>
-                          <div class="portfolio-preview-sub">Portfolio project preview • Replace with live screenshot</div>
+                          <div class="portfolio-preview-sub">Portfolio project preview • Replace with live screenshot
+                          </div>
                         </div>
                         <div class="portfolio-preview-sparkle">✦</div>
                       </div>
@@ -850,9 +1285,10 @@
                         <a href="#portfolio-detail-modal" class="portfolio-details-btn" data-project="3">
                           View Details <span class="portfolio-arrow-right">→</span>
                         </a>
-                        <a href="#portfolio" class="portfolio-live-link">
+                        <a href="https://www.heenanbrownemigration.com/" class="portfolio-live-link">
                           Live Site
-                          <svg class="portfolio-external-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                          <svg class="portfolio-external-svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                             <polyline points="15 3 21 3 21 9"></polyline>
                             <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -882,7 +1318,8 @@
                       <div class="portfolio-preview-bottom">
                         <div class="portfolio-preview-text">
                           <div class="portfolio-preview-title">ShareWorld Solutions</div>
-                          <div class="portfolio-preview-sub">Portfolio project preview • Replace with live screenshot</div>
+                          <div class="portfolio-preview-sub">Portfolio project preview • Replace with live screenshot
+                          </div>
                         </div>
                         <div class="portfolio-preview-sparkle">✦</div>
                       </div>
@@ -900,9 +1337,10 @@
                         <a href="#portfolio-detail-modal" class="portfolio-details-btn" data-project="4">
                           View Details <span class="portfolio-arrow-right">→</span>
                         </a>
-                        <a href="#portfolio" class="portfolio-live-link">
+                        <a href="https://shareworld-solutions.com/" class="portfolio-live-link">
                           Live Site
-                          <svg class="portfolio-external-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                          <svg class="portfolio-external-svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                             <polyline points="15 3 21 3 21 9"></polyline>
                             <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -932,7 +1370,8 @@
                       <div class="portfolio-preview-bottom">
                         <div class="portfolio-preview-text">
                           <div class="portfolio-preview-title">FCDHCI</div>
-                          <div class="portfolio-preview-sub">Portfolio project preview • Replace with live screenshot</div>
+                          <div class="portfolio-preview-sub">Portfolio project preview • Replace with live screenshot
+                          </div>
                         </div>
                         <div class="portfolio-preview-sparkle">✦</div>
                       </div>
@@ -950,9 +1389,10 @@
                         <a href="#portfolio-detail-modal" class="portfolio-details-btn" data-project="5">
                           View Details <span class="portfolio-arrow-right">→</span>
                         </a>
-                        <a href="#portfolio" class="portfolio-live-link">
+                        <a href="https://fcdhci.org/" class="portfolio-live-link">
                           Live Site
-                          <svg class="portfolio-external-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                          <svg class="portfolio-external-svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                             <polyline points="15 3 21 3 21 9"></polyline>
                             <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -982,7 +1422,8 @@
                       <div class="portfolio-preview-bottom">
                         <div class="portfolio-preview-text">
                           <div class="portfolio-preview-title">Strat Finance Sahil</div>
-                          <div class="portfolio-preview-sub">Portfolio project preview • Replace with live screenshot</div>
+                          <div class="portfolio-preview-sub">Portfolio project preview • Replace with live screenshot
+                          </div>
                         </div>
                         <div class="portfolio-preview-sparkle">✦</div>
                       </div>
@@ -1000,9 +1441,10 @@
                         <a href="#portfolio-detail-modal" class="portfolio-details-btn" data-project="6">
                           View Details <span class="portfolio-arrow-right">→</span>
                         </a>
-                        <a href="#portfolio" class="portfolio-live-link">
+                        <a href="https://stratfinancesahil.com/" class="portfolio-live-link">
                           Live Site
-                          <svg class="portfolio-external-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                          <svg class="portfolio-external-svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                             <polyline points="15 3 21 3 21 9"></polyline>
                             <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -1032,7 +1474,8 @@
                       <div class="portfolio-preview-bottom">
                         <div class="portfolio-preview-text">
                           <div class="portfolio-preview-title">Sparkwise Academy</div>
-                          <div class="portfolio-preview-sub">Portfolio project preview • Replace with live screenshot</div>
+                          <div class="portfolio-preview-sub">Portfolio project preview • Replace with live screenshot
+                          </div>
                         </div>
                         <div class="portfolio-preview-sparkle">✦</div>
                       </div>
@@ -1050,9 +1493,10 @@
                         <a href="#portfolio-detail-modal" class="portfolio-details-btn" data-project="7">
                           View Details <span class="portfolio-arrow-right">→</span>
                         </a>
-                        <a href="#portfolio" class="portfolio-live-link">
+                        <a href="https://sparkwiseacademy.com/" class="portfolio-live-link">
                           Live Site
-                          <svg class="portfolio-external-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                          <svg class="portfolio-external-svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                             <polyline points="15 3 21 3 21 9"></polyline>
                             <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -1082,7 +1526,8 @@
                       <div class="portfolio-preview-bottom">
                         <div class="portfolio-preview-text">
                           <div class="portfolio-preview-title">iSellHub</div>
-                          <div class="portfolio-preview-sub">Portfolio project preview • Replace with live screenshot</div>
+                          <div class="portfolio-preview-sub">Portfolio project preview • Replace with live screenshot
+                          </div>
                         </div>
                         <div class="portfolio-preview-sparkle">✦</div>
                       </div>
@@ -1100,9 +1545,10 @@
                         <a href="#portfolio-detail-modal" class="portfolio-details-btn" data-project="8">
                           View Details <span class="portfolio-arrow-right">→</span>
                         </a>
-                        <a href="#portfolio" class="portfolio-live-link">
+                        <a href="https://isellhub.com/" class="portfolio-live-link">
                           Live Site
-                          <svg class="portfolio-external-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                          <svg class="portfolio-external-svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                             <polyline points="15 3 21 3 21 9"></polyline>
                             <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -1132,7 +1578,8 @@
                       <div class="portfolio-preview-bottom">
                         <div class="portfolio-preview-text">
                           <div class="portfolio-preview-title">ResellHub</div>
-                          <div class="portfolio-preview-sub">Portfolio project preview • Replace with live screenshot</div>
+                          <div class="portfolio-preview-sub">Portfolio project preview • Replace with live screenshot
+                          </div>
                         </div>
                         <div class="portfolio-preview-sparkle">✦</div>
                       </div>
@@ -1150,9 +1597,10 @@
                         <a href="#portfolio-detail-modal" class="portfolio-details-btn" data-project="9">
                           View Details <span class="portfolio-arrow-right">→</span>
                         </a>
-                        <a href="#portfolio" class="portfolio-live-link">
+                        <a href="https://isellhub.com/" class="portfolio-live-link">
                           Live Site
-                          <svg class="portfolio-external-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                          <svg class="portfolio-external-svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                             <polyline points="15 3 21 3 21 9"></polyline>
                             <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -1182,7 +1630,8 @@
                       <div class="portfolio-preview-bottom">
                         <div class="portfolio-preview-text">
                           <div class="portfolio-preview-title">Shop To Success</div>
-                          <div class="portfolio-preview-sub">Portfolio project preview • Replace with live screenshot</div>
+                          <div class="portfolio-preview-sub">Portfolio project preview • Replace with live screenshot
+                          </div>
                         </div>
                         <div class="portfolio-preview-sparkle">✦</div>
                       </div>
@@ -1200,9 +1649,10 @@
                         <a href="#portfolio-detail-modal" class="portfolio-details-btn" data-project="10">
                           View Details <span class="portfolio-arrow-right">→</span>
                         </a>
-                        <a href="#portfolio" class="portfolio-live-link">
+                        <a href="https://shoptosuccess.com/" class="portfolio-live-link">
                           Live Site
-                          <svg class="portfolio-external-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                          <svg class="portfolio-external-svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                             <polyline points="15 3 21 3 21 9"></polyline>
                             <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -1232,7 +1682,8 @@
                       <div class="portfolio-preview-bottom">
                         <div class="portfolio-preview-text">
                           <div class="portfolio-preview-title">SDR Kart</div>
-                          <div class="portfolio-preview-sub">Portfolio project preview • Replace with live screenshot</div>
+                          <div class="portfolio-preview-sub">Portfolio project preview • Replace with live screenshot
+                          </div>
                         </div>
                         <div class="portfolio-preview-sparkle">✦</div>
                       </div>
@@ -1250,9 +1701,10 @@
                         <a href="#portfolio-detail-modal" class="portfolio-details-btn" data-project="11">
                           View Details <span class="portfolio-arrow-right">→</span>
                         </a>
-                        <a href="#portfolio" class="portfolio-live-link">
+                        <a href="https://sdrkart.com/" class="portfolio-live-link">
                           Live Site
-                          <svg class="portfolio-external-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                          <svg class="portfolio-external-svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                             <polyline points="15 3 21 3 21 9"></polyline>
                             <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -1282,7 +1734,8 @@
                       <div class="portfolio-preview-bottom">
                         <div class="portfolio-preview-text">
                           <div class="portfolio-preview-title">Liviyoung</div>
-                          <div class="portfolio-preview-sub">Portfolio project preview • Replace with live screenshot</div>
+                          <div class="portfolio-preview-sub">Portfolio project preview • Replace with live screenshot
+                          </div>
                         </div>
                         <div class="portfolio-preview-sparkle">✦</div>
                       </div>
@@ -1301,9 +1754,10 @@
                         <a href="#portfolio-detail-modal" class="portfolio-details-btn" data-project="12">
                           View Details <span class="portfolio-arrow-right">→</span>
                         </a>
-                        <a href="#portfolio" class="portfolio-live-link">
+                        <a href="https://liviyoung.com/" class="portfolio-live-link">
                           Live Site
-                          <svg class="portfolio-external-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                          <svg class="portfolio-external-svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                             <polyline points="15 3 21 3 21 9"></polyline>
                             <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -1320,7 +1774,8 @@
                 <div class="popup-content popup-content2">
                   <a class="close portfolio-modal-close" href="#portfolio">×</a>
                   <h2 id="modal-project-title" class="simple-steps">Project Details</h2>
-                  <p id="modal-project-category" class="corpo-sub" style="color: #00cc97; margin-bottom: 15px; font-weight: 600;"></p>
+                  <p id="modal-project-category" class="corpo-sub"
+                    style="color: var(--color-primary); margin-bottom: 15px; font-weight: 600;"></p>
                   <p id="modal-project-desc" class="blog-sit-text"></p>
                   <div class="corporate_main" style="margin: 20px 0;">
                     <div class="cuberto_main">
@@ -1337,7 +1792,9 @@
                     </div>
                   </div>
                   <div style="margin-top: 25px;">
-                    <a id="modal-project-live" href="#portfolio" class="btn-hover" style="display: inline-flex; width: auto; padding: 14px 28px; font-size: 16px; border-radius: 25px;">Live Site ↗</a>
+                    <a id="modal-project-live" href="#portfolio" class="btn-hover"
+                      style="display: inline-flex; width: auto; padding: 14px 28px; font-size: 16px; border-radius: 25px;">Live
+                      Site ↗</a>
                   </div>
                 </div>
               </div>
@@ -1422,32 +1879,24 @@
                   <h2 class="section-heading-text coding-skill-text fade_up">Testimonials.</h2>
                   <div class="line"></div>
                 </div>
-                <p class="testament fade_up">Trusted by agency partners and businesses worldwide. Here is what clients say about working together on WordPress, Laravel, and performance optimization projects.</p>
+                <p class="testament fade_up">Trusted by agency partners and businesses worldwide. Here is what clients
+                  say about working together on WordPress, Laravel, and performance optimization projects.</p>
                 <div class="slick-slider Testimonials slick-initialized" dir="ltr">
                   <div class="slick-list">
                     <div class="slick-track"
                       style="opacity: 1; transform: translate3d(-1338px, 0px, 0px); width: 4460px;">
-                      <div data-index="-2" tabindex="-1" class="slick-slide slick-cloned" aria-hidden="true"
-                        style="width: 446px;">
-                        <div>
-                          <div tabindex="-1" style="width: 100%; display: inline-block;">
-                            <div class="colan-icon-img-main"><img src="assets/img/colan-icon.svg" alt="colan-icon">
-                            </div>
-                            <p class="avix">Sameer delivered an outstanding WordPress platform for our agency. He brought our Google PageSpeed score to 95+ and ensured 99%+ uptime. His communication and technical skills in PHP are first-class.</p>
-                            <p class="client-name">David Harrison</p>
-                            <p class="kello">Predicta Digital</p>
-                          </div>
-                        </div>
-                      </div>
+
                       <div data-index="-1" tabindex="-1" class="slick-slide slick-cloned" aria-hidden="true"
                         style="width: 446px;">
                         <div>
                           <div tabindex="-1" style="width: 100%; display: inline-block;">
                             <div class="colan-icon-img-main"><img src="assets/img/colan-icon.svg" alt="colan-icon">
                             </div>
-                            <p class="avix">Working with Sameer on our Laravel backend was seamless. He designed a clean MySQL schema and delivered our MLM referral modules ahead of schedule. Highly recommended for full-stack projects.</p>
-                            <p class="client-name">Rohan Sharma</p>
-                            <p class="kello">Next Web Guru</p>
+                            <p class="avix">Sameer did an excellent job developing our ArcturusTech website. His
+                              full-stack development skills, attention to detail, and commitment to quality were
+                              impressive. Highly recommended!.</p>
+                            <p class="client-name">Nityanand Bala</p>
+                            <p class="kello">ArcturusTech Client</p>
                           </div>
                         </div>
                       </div>
@@ -1457,9 +1906,11 @@
                           <div tabindex="-1" style="width: 100%; display: inline-block;">
                             <div class="colan-icon-img-main"><img src="assets/img/colan-icon.svg" alt="colan-icon">
                             </div>
-                            <p class="avix">Sameer delivered an outstanding WordPress platform for our agency. He brought our Google PageSpeed score to 95+ and ensured 99%+ uptime. His communication and technical skills in PHP are first-class.</p>
-                            <p class="client-name">David Harrison</p>
-                            <p class="kello">Predicta Digital</p>
+                            <p class="avix">Sameer did a fantastic job on our website. His technical expertise,
+                              professionalism, and attention to detail made the entire development process smooth and
+                              hassle-free. Highly recommended!.</p>
+                            <p class="client-name">Devbrat Sardar</p>
+                            <p class="kello">Next Web Guru</p>
                           </div>
                         </div>
                       </div>
@@ -1469,91 +1920,20 @@
                           <div tabindex="-1" style="width: 100%; display: inline-block;">
                             <div class="colan-icon-img-main"><img src="assets/img/colan-icon.svg" alt="colan-icon">
                             </div>
-                            <p class="avix">Working with Sameer on our Laravel backend was seamless. He designed a clean MySQL schema and delivered our MLM referral modules ahead of schedule. Highly recommended for full-stack projects.</p>
-                            <p class="client-name">Rohan Sharma</p>
+                            <p class="avix">Working with Sameer was a great experience. He understood our requirements
+                              well and delivered a modern, responsive website with excellent functionality. His
+                              dedication and problem-solving skills really stood out!.</p>
+                            <p class="client-name">Vishal Mandal</p>
                             <p class="kello">Next Web Guru</p>
                           </div>
                         </div>
                       </div>
-                      <div data-index="2" class="slick-slide slick-active" tabindex="-1" aria-hidden="false"
-                        style="outline: none; width: 446px;">
-                        <div>
-                          <div tabindex="-1" style="width: 100%; display: inline-block;">
-                            <div class="colan-icon-img-main"><img src="assets/img/colan-icon.svg" alt="colan-icon">
-                            </div>
-                            <p class="avix">Sameer revamped our WooCommerce store with custom Elementor sections and payment gateway integrations. Our conversion rate increased significantly and the website loads instantly.</p>
-                            <p class="client-name">Marcus Vance</p>
-                            <p class="kello">Vance Retail Studio</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div data-index="3" class="slick-slide" tabindex="-1" aria-hidden="true"
-                        style="outline: none; width: 446px;">
-                        <div>
-                          <div tabindex="-1" style="width: 100%; display: inline-block;">
-                            <div class="colan-icon-img-main"><img src="assets/img/colan-icon.svg" alt="colan-icon">
-                            </div>
-                            <p class="avix">Exceptional dedication and clean code. Sameer resolved all our technical SEO and database issues effortlessly. A true professional in WordPress &amp; Laravel development.</p>
-                            <p class="client-name">Priya Patel</p>
-                            <p class="kello">Elevate Digital Media</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div data-index="4" tabindex="-1" class="slick-slide slick-cloned" aria-hidden="true"
-                        style="width: 446px;">
-                        <div>
-                          <div tabindex="-1" style="width: 100%; display: inline-block;">
-                            <div class="colan-icon-img-main"><img src="assets/img/colan-icon.svg" alt="colan-icon">
-                            </div>
-                            <p class="avix">Sameer delivered an outstanding WordPress platform for our agency. He brought our Google PageSpeed score to 95+ and ensured 99%+ uptime. His communication and technical skills in PHP are first-class.</p>
-                            <p class="client-name">David Harrison</p>
-                            <p class="kello">Predicta Digital</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div data-index="5" tabindex="-1" class="slick-slide slick-cloned" aria-hidden="true"
-                        style="width: 446px;">
-                        <div>
-                          <div tabindex="-1" style="width: 100%; display: inline-block;">
-                            <div class="colan-icon-img-main"><img src="assets/img/colan-icon.svg" alt="colan-icon">
-                            </div>
-                            <p class="avix">Working with Sameer on our Laravel backend was seamless. He designed a clean MySQL schema and delivered our MLM referral modules ahead of schedule. Highly recommended for full-stack projects.</p>
-                            <p class="client-name">Rohan Sharma</p>
-                            <p class="kello">Next Web Guru</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div data-index="6" tabindex="-1" class="slick-slide slick-cloned" aria-hidden="true"
-                        style="width: 446px;">
-                        <div>
-                          <div tabindex="-1" style="width: 100%; display: inline-block;">
-                            <div class="colan-icon-img-main"><img src="assets/img/colan-icon.svg" alt="colan-icon">
-                            </div>
-                            <p class="avix">Sameer revamped our WooCommerce store with custom Elementor sections and payment gateway integrations. Our conversion rate increased significantly and the website loads instantly.</p>
-                            <p class="client-name">Marcus Vance</p>
-                            <p class="kello">Vance Retail Studio</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div data-index="7" tabindex="-1" class="slick-slide slick-cloned" aria-hidden="true"
-                        style="width: 446px;">
-                        <div>
-                          <div tabindex="-1" style="width: 100%; display: inline-block;">
-                            <div class="colan-icon-img-main"><img src="assets/img/colan-icon.svg" alt="colan-icon">
-                            </div>
-                            <p class="avix">Exceptional dedication and clean code. Sameer resolved all our technical SEO and database issues effortlessly. A true professional in WordPress &amp; Laravel development.</p>
-                            <p class="client-name">Priya Patel</p>
-                            <p class="kello">Elevate Digital Media</p>
-                          </div>
-                        </div>
-                      </div>
+
                     </div>
                   </div>
                   <ul class="slick-dots" style="display: block;">
                     <li class=""><button>1</button></li>
                     <li class="slick-active"><button>2</button></li>
-                    <li class=""><button>3</button></li>
-                    <li class=""><button>4</button></li>
                   </ul>
                 </div>
               </section>
@@ -1630,7 +2010,8 @@
                       </svg></div>
                     <div>
                       <p class="contact-email-text">EMAIL</p>
-                      <p class="contact-email"><a href="mailto:biswassameer291@gmail.com">biswassameer291@gmail.com</a></p>
+                      <p class="contact-email"><a href="mailto:biswassameer291@gmail.com">biswassameer291@gmail.com</a>
+                      </p>
                     </div>
                   </div>
                   <div class="contact-box-main zoom_in">
@@ -1646,22 +2027,83 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-container">
-                  <div class="form"><label for="name" class="form__label">NAME</label><input type="text"
-                      class="form__input" placeholder="Your name" id="name" required="" autocomplete="off" value="">
-                  </div>
-                  <div class="form"><label for="email" class="form__label">EMAIL</label><input type="email"
-                      class="form__input" placeholder="Your email" id="email" required="" autocomplete="off" value="">
-                  </div>
-                  <div class="form subject-input-main"><label for="subject" class="form__label">SUBJECT</label><input
-                      type="text" class="form__input" placeholder="Your subject" id="subject" required=""
-                      autocomplete="off" value=""></div>
-                  <div class="form"><label for="message" class="form__label">MESSAGE</label><input type="text"
-                      class="form__input" placeholder="Write your text..." id="message" required="" autocomplete="off"
-                      value=""></div>
-                </div>
-                <div class="wrapper blog-btn"><a class="btn-hover" href="#">Submit Now</a></div><iframe
-                  class="map-iframe"
+
+
+               
+<form id="contactForm" novalidate>
+  <div class="form-container">
+
+    <div class="form">
+      <label for="name" class="form__label">NAME</label>
+      <input
+        type="text"
+        class="form__input"
+        placeholder="Your name"
+        id="name"
+        name="name"
+        maxlength="80"
+        required
+        autocomplete="name"
+      >
+    </div>
+
+    <div class="form">
+      <label for="email" class="form__label">EMAIL</label>
+      <input
+        type="email"
+        class="form__input"
+        placeholder="Your email"
+        id="email"
+        name="email"
+        maxlength="254"
+        required
+        autocomplete="email"
+      >
+    </div>
+
+    <div class="form subject-input-main">
+      <label for="subject" class="form__label">SUBJECT</label>
+      <input
+        type="text"
+        class="form__input"
+        placeholder="Your subject"
+        id="subject"
+        name="subject"
+        maxlength="150"
+        required
+      >
+    </div>
+
+    <div class="form">
+      <label for="message" class="form__label">MESSAGE</label>
+      <textarea
+        class="form__input"
+        placeholder="Write your text..."
+        id="message"
+        name="message"
+        maxlength="3000"
+        rows="5"
+        required
+      ></textarea>
+    </div>
+
+  </div>
+
+  <div class="wrapper blog-btn">
+    <button
+      type="submit"
+      class="btn-hover"
+      id="submitBtn"
+    >
+      Submit Now
+    </button>
+  </div>
+
+  <p id="formStatus" role="status" aria-live="polite"></p>
+</form>
+
+
+                <iframe class="map-iframe"
                   src="https://maps.google.com/maps?q=Uttarakhand,%20India&amp;t=&amp;z=9&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
                   loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 <div class="footer">© 2026 | All rights reserved by <span>Sameer Biswas</span></div>
@@ -1682,5 +2124,182 @@
 
 <!-- Core Interactive Script -->
 <script src="js/main.js"></script>
+
+
+<script>
+(() => {
+  const scriptURL =
+    "https://script.google.com/macros/s/AKfycbwFj_uwb6f6BLAz_L3stsTkR9Lv6wqNB1XnHo28uZiX1n3DXwp4ICoTPgP59j5a_KrNiw/exec";
+
+  const form = document.getElementById("contactForm");
+  const status = document.getElementById("formStatus");
+  const button = document.getElementById("submitBtn");
+
+  if (!form || !status || !button) {
+    console.error("Contact form, status message, or submit button not found.");
+    return;
+  }
+
+  const emailInput = document.getElementById("email");
+  const nameInput = document.getElementById("name");
+  const subjectInput = document.getElementById("subject");
+  const messageInput = document.getElementById("message");
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  let isSubmitting = false;
+
+  function showStatus(message, type) {
+    status.textContent = message;
+    status.dataset.type = type;
+  }
+
+  function setLoading(loading) {
+    isSubmitting = loading;
+    button.disabled = loading;
+    button.textContent = loading ? "Please wait..." : "Submit Now";
+  }
+
+  function checkEmailOnServer(email) {
+    return new Promise((resolve, reject) => {
+      const callbackName =
+        "contactEmailCheck_" +
+        Date.now() +
+        "_" +
+        Math.random().toString(36).slice(2);
+
+      const script = document.createElement("script");
+      let finished = false;
+
+      const timeout = setTimeout(() => {
+        finish();
+        reject(new Error("Email check timed out."));
+      }, 15000);
+
+      function finish() {
+        if (finished) return;
+        finished = true;
+        clearTimeout(timeout);
+        delete window[callbackName];
+        script.remove();
+      }
+
+      window[callbackName] = (result) => {
+        finish();
+
+        if (!result || typeof result.exists !== "boolean") {
+          reject(new Error("Invalid email check response."));
+          return;
+        }
+
+        resolve(result);
+      };
+
+      script.onerror = () => {
+        finish();
+        reject(new Error("Unable to verify this email."));
+      };
+
+      const url = new URL(scriptURL);
+      url.searchParams.set("email", email);
+      url.searchParams.set("callback", callbackName);
+
+      script.src = url.toString();
+      document.body.appendChild(script);
+    });
+  }
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    if (isSubmitting) return;
+
+    // Built-in required, type=email and other HTML validation.
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      showStatus("Please complete all fields correctly.", "error");
+      return;
+    }
+
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim().toLowerCase();
+    const subject = subjectInput.value.trim();
+    const message = messageInput.value.trim();
+
+    if (name.length < 2 || name.length > 80) {
+      showStatus("Name must contain 2–80 characters.", "error");
+      nameInput.focus();
+      return;
+    }
+
+    if (!emailPattern.test(email) || email.length > 254) {
+      showStatus("Please enter a valid email address.", "error");
+      emailInput.focus();
+      return;
+    }
+
+    if (subject.length < 2 || subject.length > 150) {
+      showStatus("Subject must contain 2–150 characters.", "error");
+      subjectInput.focus();
+      return;
+    }
+
+    if (message.length < 10 || message.length > 3000) {
+      showStatus("Message must contain 10–3000 characters.", "error");
+      messageInput.focus();
+      return;
+    }
+
+    setLoading(true);
+    showStatus("Checking your email address...", "info");
+
+    try {
+      // Check whether this email has already submitted a request.
+      const emailCheck = await checkEmailOnServer(email);
+
+      if (emailCheck.exists) {
+        showStatus(
+          "Already submitted! A request from this email already exists.",
+          "error"
+        );
+        return;
+      }
+
+      showStatus("Sending your message...", "info");
+
+      // Google Apps Script receives the JSON payload.
+      // no-cors means the browser cannot read the server response.
+      await fetch(scriptURL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          subject,
+          message
+        })
+      });
+
+      showStatus("Your request was sent.", "success");
+
+      // Do not clear the form until the saved row has been verified.
+
+    } catch (error) {
+      console.error("Contact form error:", error);
+
+      showStatus(
+        "We couldn't verify or send your request. Please try again later.",
+        "error"
+      );
+
+    } finally {
+      setLoading(false);
+    }
+  });
+})();
+</script>
+
 
 </html>

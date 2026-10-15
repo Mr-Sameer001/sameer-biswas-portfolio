@@ -1,10 +1,12 @@
-# Sameer Biswas Portfolio (HTML + CSS + Bootstrap 5 + JS, MVC)
-Open index.html in a browser (no build step).
+# Sameer Biswas Portfolio
 
-- index.html                    → shell (containers only)
-- js/models/data.js             → MODEL: content + UI state
-- js/views/view.js              → VIEW: renders Model into DOM
-- js/controllers/app.js         → CONTROLLER: events, scroll spy, filter, slider, form, animations
-- css/style.css                 → design tokens (:root) + styles
+This is a static portfolio site. Open `index.html` in a browser for a local preview, or serve the `biogi` directory through XAMPP to test the contact form integration.
 
-Edit content only in data.js. Replace avatar/thumb gradients with <img> in view.js when you have real photos. CV file: assets/Sameer_Biswas_CV.pdf
+## Active site
+
+- `index.html` contains the page sections, skills and marquee styles, and the contact form integration.
+- `css/style.css` contains the bundled Bootstrap styles, portfolio theme, global color tokens, responsive rules, and interaction states.
+- `js/main.js` handles the mobile menu, scroll reveals and section navigation, testimonial slider, popups, and portfolio filtering.
+- `assets/` contains the page's images, video, CV, and supporting graphics.
+
+The separate `js/models`, `js/views`, and `js/controllers` files are an inactive MVC prototype and are not loaded by `index.html`.
